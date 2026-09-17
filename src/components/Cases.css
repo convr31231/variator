@@ -1,0 +1,41 @@
+.cases__placeholder {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.cases__placeholder-title {
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+}
+
+.cases__placeholder-hint {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.cases__placeholder code {
+  color: var(--accent);
+}
+
+.cases__card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+}
+
+.cases__meta {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.cases__meta dt {
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2rem;
+}
+
+.cases__meta dd {
+  color: var(--text-muted);
+}

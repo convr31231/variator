@@ -1,0 +1,24 @@
+.urgency__panel {
+  display: grid;
+  gap: 1.5rem;
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(135deg, rgba(212, 163, 90, 0.08), transparent 40%),
+    var(--bg-card);
+}
+
+@media (min-width: 800px) {
+  .urgency__panel {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    padding: 2.5rem;
+  }
+}
+
+.urgency__note {
+  margin-top: 1rem;
+  color: var(--text-dim);
+  max-width: 58ch;
+}
