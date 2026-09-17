@@ -1,24 +1,412 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#08090b" />
-    <meta
-      name="description"
-      content="Диагностика и ремонт вариаторов во Владивостоке. Запись на диагностику CVT."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <title>Ремонт вариаторов во Владивостоке</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Ремонт вариаторов во Владивостоке — диагностика и сервис CVT</title>
+  <meta name="description" content="Ремонт вариаторов во Владивостоке: диагностика CVT, согласование работ, ремонт и проверка. Запись на диагностику.">
+  <link rel="canonical" href="https://example.ru/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ремонт вариаторов во Владивостоке">
+  <meta property="og:description" content="Диагностика, ремонт и обслуживание вариаторов. Запись на диагностику.">
+  <meta property="og:image" content="https://example.ru/images/hero/hero.png">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="theme-color" content="#090a0c">
+  <link rel="icon" href="images/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoRepair",
+    "name": "Пример",
+    "description": "Ремонт вариаторов во Владивостоке",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Владивосток",
+      "addressCountry": "RU",
+      "streetAddress": "[Адрес сервиса]"
+    },
+    "telephone": "[телефон]",
+    "areaServed": "Владивосток",
+    "url": "https://example.ru/"
+  }
+  </script>
+</head>
+<body data-base="">
+  <header class="site-header" data-header>
+    <div class="wrap header-row">
+      <a class="brand" href="index.html" aria-label="На главную">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span><strong data-text="shortName">Пример</strong><small>Владивосток</small></span>
+      </a>
+      <nav class="nav-desk" aria-label="Основная навигация">
+        <a href="services.html">Услуги</a>
+        <a href="about.html">О компании</a>
+        <a href="prices.html">Цены</a>
+        <a href="cases.html">Кейсы</a>
+        <a href="#otzyvy">Отзывы</a>
+        <a href="#faq">FAQ</a>
+        <a href="contacts.html">Контакты</a>
+      </nav>
+      <div class="header-side">
+        <a class="header-phone" data-href="phone" href="tel:+70000000000"><span data-text="phone">Телефон</span></a>
+        <button class="btn btn--primary header-cta" type="button" data-open-modal="book">Записаться</button>
+        <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" data-burger>☰</button>
+      </div>
+    </div>
+    <div class="drawer" data-drawer>
+      <nav aria-label="Мобильное меню">
+        <a href="services.html">Услуги</a>
+        <a href="about.html">О компании</a>
+        <a href="prices.html">Цены</a>
+        <a href="cases.html">Кейсы</a>
+        <a href="#otzyvy">Отзывы</a>
+        <a href="#faq">FAQ</a>
+        <a href="contacts.html">Контакты</a>
+      </nav>
+      <div class="drawer-actions">
+        <a class="btn btn--ghost" data-href="phone" href="tel:+70000000000"><span data-text="phone">Позвонить</span></a>
+        <button class="btn btn--primary" type="button" data-open-modal="book">Записаться</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="pad-b">
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="wrap hero-content">
+        <p class="kicker">Автосервис · Владивосток</p>
+        <h1>Ремонт вариаторов во Владивостоке</h1>
+        <p class="hero-sub">Диагностика, ремонт и обслуживание CVT. Выясняем причину, согласуем работы и только потом приступаем к ремонту.</p>
+        <div class="hero-cta">
+          <button class="btn btn--primary" type="button" data-open-modal="book">Записаться на диагностику</button>
+          <a class="btn btn--ghost" data-href="phone" href="tel:+70000000000">Позвонить</a>
+        </div>
+        <div class="hero-meta">
+          <article><span>Телефон</span><strong><a data-href="phone" href="tel:+70000000000"><span data-text="phone"></span></a></strong></article>
+          <article><span>Адрес</span><strong data-text="address"></strong></article>
+          <article><span>График</span><strong data-text="schedule"></strong></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust">
+      <div class="wrap">
+        <div class="head reveal">
+          <p class="kicker">Доверие</p>
+          <h2 class="title">Почему к нам обращаются</h2>
+        </div>
+        <div class="trust-grid" data-trust></div>
+      </div>
+    </section>
+
+    <section class="section section--band" id="uslugi">
+      <div class="wrap">
+        <div class="head head--split reveal">
+          <div>
+            <p class="kicker">Услуги</p>
+            <h2 class="title">Что ремонтируем</h2>
+            <p class="lead">Главный фокус — вариаторы. Также работаем с АКПП и обслуживанием жидкости CVT.</p>
+          </div>
+          <a class="btn btn--ghost" href="services.html">Все услуги</a>
+        </div>
+        <div class="services-mosaic" data-services></div>
+      </div>
+    </section>
+
+    <section class="section" id="simptomy">
+      <div class="wrap">
+        <div class="head head--split reveal">
+          <div>
+            <p class="kicker">Симптомы</p>
+            <h2 class="title">Вариатор начал работать неправильно?</h2>
+            <p class="lead">Проблема → что это может означать → что делать. Если узнаёте симптомы — начните с диагностики.</p>
+          </div>
+          <button class="btn btn--primary" type="button" data-open-modal="book">Записаться на диагностику</button>
+        </div>
+        <div class="symptoms-rail" data-symptoms></div>
+      </div>
+    </section>
+
+    <section class="section section--band" id="diagnostika">
+      <div class="wrap">
+        <div class="head reveal">
+          <p class="kicker">Процесс</p>
+          <h2 class="title">Начинаем с диагностики</h2>
+          <p class="lead">Не обещаем результат «на глаз». Сначала причина — потом решение.</p>
+        </div>
+        <div class="timeline" data-steps></div>
+      </div>
+    </section>
+
+    <section class="section" id="konsultaciya">
+      <div class="wrap">
+        <div class="consult reveal">
+          <div class="consult-copy">
+            <p class="kicker">Консультация</p>
+            <h2>Не знаете, что происходит с автомобилем?</h2>
+            <p>Опишите симптомы — специалист поможет понять, с чего начать диагностику. Это не замена очной проверки, а первый шаг.</p>
+          </div>
+          <div class="consult-form">
+            <form class="form" data-form data-source="консультация" data-submit-label="Получить консультацию">
+              <div data-fields>
+                <label class="field"><span>Имя</span><input name="name" autocomplete="name" required></label>
+                <label class="field"><span>Телефон</span><input name="phone" type="tel" autocomplete="tel" required placeholder="+7 (___) ___-__-__"></label>
+                <label class="field"><span>Марка автомобиля</span><input name="car" placeholder="Toyota, Nissan…"></label>
+                <label class="field"><span>Что происходит с автомобилем?</span><textarea name="message" rows="3" placeholder="Рывки, шум, ошибки…"></textarea></label>
+                <label class="consent"><input type="checkbox" name="consent" required><span>Согласен с <a href="consent.html" target="_blank" rel="noopener">обработкой персональных данных</a></span></label>
+                <p class="form-error" data-error hidden></p>
+                <button class="btn btn--primary btn--block" type="submit">Получить консультацию</button>
+              </div>
+              <div class="form-ok" data-success hidden>
+                <h3>Спасибо! Заявка отправлена.</h3>
+                <p>Мы свяжемся с вами.</p>
+                <button type="button" class="btn btn--ghost" data-reset>Отправить ещё</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--band" id="marki">
+      <div class="wrap">
+        <div class="head head--split reveal">
+          <div>
+            <p class="kicker">Марки</p>
+            <h2 class="title">С какими автомобилями работаем</h2>
+            <p class="lead">SEO-каталог популярных CVT. Список марок уточняется у заказчика — страницы можно расширять.</p>
+          </div>
+          <a class="btn btn--ghost" href="variatory/index.html">Каталог вариаторов</a>
+        </div>
+        <div class="brands" data-brands></div>
+        <p class="todo" style="margin-top:1rem">TODO: подтвердить актуальный список марок в карточке бизнеса</p>
+      </div>
+    </section>
+
+    <section class="section" id="ceny">
+      <div class="wrap">
+        <div class="head head--split reveal">
+          <div>
+            <p class="kicker">Цены</p>
+            <h2 class="title">Стоимость ремонта</h2>
+          </div>
+          <button class="btn btn--primary" type="button" data-open-modal="book">Узнать стоимость</button>
+        </div>
+        <div data-prices></div>
+      </div>
+    </section>
+
+    <section class="section section--band" id="prozrachnost">
+      <div class="wrap">
+        <div class="head reveal">
+          <p class="kicker">Прозрачность</p>
+          <h2 class="title">Перед ремонтом вы знаете, что и за что платите</h2>
+          <p class="lead">Простая схема без скрытых шагов.</p>
+        </div>
+        <div class="flow" data-flow></div>
+      </div>
+    </section>
+
+    <section class="section" id="garantiya" data-warranty hidden>
+      <div class="wrap">
+        <div class="finale reveal">
+          <div>
+            <p class="kicker">Гарантия</p>
+            <h2 data-warranty-title></h2>
+            <p data-warranty-text></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--band" id="keysy">
+      <div class="wrap">
+        <div class="head head--split reveal">
+          <div>
+            <p class="kicker">Кейсы</p>
+            <h2 class="title">Реальные работы</h2>
+          </div>
+          <a class="btn btn--ghost" href="cases.html">Все кейсы</a>
+        </div>
+        <div data-cases></div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="wrap">
+        <div class="head reveal">
+          <p class="kicker">Фото</p>
+          <h2 class="title">Галерея</h2>
+          <p class="lead">Сейчас — временные заглушки. Замените файлы в images/gallery на фото сервиса.</p>
+        </div>
+        <div class="gallery" data-gallery></div>
+      </div>
+    </section>
+
+    <section class="section section--band" id="blog">
+      <div class="wrap">
+        <div class="head reveal">
+          <p class="kicker">Полезно знать</p>
+          <h2 class="title">Статьи о вариаторах</h2>
+        </div>
+        <div class="articles" data-articles></div>
+      </div>
+    </section>
+
+    <section class="section" id="otzyvy">
+      <div class="wrap">
+        <div class="head reveal">
+          <p class="kicker">Отзывы</p>
+          <h2 class="title">Что говорят клиенты</h2>
+        </div>
+        <div data-reviews></div>
+      </div>
+    </section>
+
+    <section class="section section--band" id="faq">
+      <div class="wrap">
+        <div class="head reveal">
+          <p class="kicker">FAQ</p>
+          <h2 class="title">Частые вопросы</h2>
+        </div>
+        <div class="faq-list" data-faq data-limit="6"></div>
+      </div>
+    </section>
+
+    <section class="section" id="kontakty">
+      <div class="wrap">
+        <div class="head reveal">
+          <p class="kicker">Контакты</p>
+          <h2 class="title">Приезжайте на диагностику</h2>
+        </div>
+        <div class="contacts-grid">
+          <div class="contact-card reveal">
+            <ul class="contact-list">
+              <li><span>Название</span><strong data-text="name"></strong></li>
+              <li><span>Адрес</span><strong data-text="address"></strong></li>
+              <li><span>Телефон</span><strong><a data-href="phone" href="tel:+70000000000"><span data-text="phone"></span></a></strong></li>
+              <li><span>График</span><strong data-text="weekdays"></strong><br><strong data-text="weekend"></strong></li>
+            </ul>
+            <div class="contact-actions">
+              <a class="btn btn--primary" data-href="phone" href="tel:+70000000000">Позвонить</a>
+              <button class="btn btn--soft" type="button" data-open-modal="book">Записаться</button>
+              <a class="btn btn--soft" data-messenger="whatsapp" href="#" hidden>WhatsApp</a>
+              <a class="btn btn--soft" data-messenger="telegram" href="#" hidden>Telegram</a>
+              <a class="btn btn--ghost" data-map="route" href="#">Построить маршрут</a>
+            </div>
+          </div>
+          <div class="map-box reveal">
+            <div>
+              <p>Карта появится после добавления ссылки 2GIS / Яндекс Карт в <code>js/data.js</code>.</p>
+              <p style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center">
+                <a class="btn btn--ghost" data-map="twogis" href="#">2GIS</a>
+                <a class="btn btn--ghost" data-map="yandex" href="#">Яндекс Карты</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="finale reveal" style="margin-top:1.5rem">
+          <div>
+            <h2>Готовы начать с диагностики?</h2>
+            <p>Оставьте заявку — перезвоним и согласуем удобное время во Владивостоке.</p>
+          </div>
+          <div class="finale-actions">
+            <button class="btn btn--primary" type="button" data-open-modal="book">Записаться на диагностику</button>
+            <a class="btn btn--ghost" data-href="phone" href="tel:+70000000000"><span data-text="phone"></span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <a class="brand" href="index.html"><span class="brand-mark"></span><span><strong data-text="shortName"></strong></span></a>
+        <p style="color:var(--muted);margin-top:.85rem;max-width:28ch" data-text="tagline"></p>
+        <p style="color:var(--dim);margin-top:.75rem;font-size:.85rem" data-text="entity"></p>
+      </div>
+      <div>
+        <h2>Услуги</h2>
+        <ul class="footer-list">
+          <li><a href="services/diagnostika.html">Диагностика</a></li>
+          <li><a href="services/remont-variatora.html">Ремонт вариатора</a></li>
+          <li><a href="services/remont-akpp.html">Ремонт АКПП</a></li>
+          <li><a href="services/zamena-masla.html">Замена масла</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Разделы</h2>
+        <ul class="footer-list">
+          <li><a href="about.html">О компании</a></li>
+          <li><a href="prices.html">Цены</a></li>
+          <li><a href="cases.html">Кейсы</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+          <li><a href="privacy.html">Политика</a></li>
+          <li><a href="consent.html">Согласие</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Контакты</h2>
+        <ul class="footer-list">
+          <li><a data-href="phone" href="tel:+70000000000"><span data-text="phone"></span></a></li>
+          <li data-text="address"></li>
+          <li data-text="schedule"></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <p>© <span data-year></span> Ремонт вариаторов во Владивостоке.</p>
+    </div>
+  </footer>
+
+  <div class="mobile-bar" role="region" aria-label="Быстрые действия">
+    <a class="btn btn--ghost" data-href="phone" href="tel:+70000000000">Позвонить</a>
+    <button class="btn btn--primary" type="button" data-open-modal="book">Записаться</button>
+  </div>
+
+  <div class="overlay" id="book" role="dialog" aria-modal="true" aria-labelledby="book-title">
+    <div class="modal">
+      <div class="modal-head">
+        <h2 id="book-title">Записаться на диагностику</h2>
+        <button class="modal-x" type="button" data-close-modal aria-label="Закрыть">×</button>
+      </div>
+      <form class="form" data-form data-source="модальная запись" data-submit-label="Записаться на диагностику">
+        <div data-fields>
+          <label class="field"><span>Имя</span><input name="name" required autocomplete="name"></label>
+          <label class="field"><span>Телефон</span><input name="phone" type="tel" required autocomplete="tel" placeholder="+7 (___) ___-__-__"></label>
+          <label class="field"><span>Марка автомобиля</span><input name="car"></label>
+          <label class="field"><span>Модель</span><input name="model"></label>
+          <label class="field"><span>Описание проблемы</span><textarea name="message" rows="3"></textarea></label>
+          <label class="consent"><input type="checkbox" name="consent" required><span>Согласен с <a href="consent.html" target="_blank" rel="noopener">обработкой персональных данных</a></span></label>
+          <p class="form-error" data-error hidden></p>
+          <button class="btn btn--primary btn--block" type="submit">Записаться на диагностику</button>
+        </div>
+        <div class="form-ok" data-success hidden>
+          <h3>Спасибо! Заявка отправлена.</h3>
+          <p>Мы свяжемся с вами.</p>
+          <button type="button" class="btn btn--ghost" data-reset>Ещё одна заявка</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="lightbox" data-lightbox role="dialog" aria-modal="true" aria-label="Просмотр фото">
+    <button class="lightbox-x" type="button" data-lightbox-close aria-label="Закрыть">×</button>
+    <img src="" alt="">
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/faq.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/main.js"></script>
+</body>
 </html>

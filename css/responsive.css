@@ -1,0 +1,53 @@
+@media (min-width: 520px) {
+  .header-cta { display: inline-flex; }
+  .hero-meta { grid-template-columns: repeat(3, 1fr); }
+  .brands { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 760px) {
+  .header-phone { display: inline-flex; }
+  .head--split {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .trust-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-mosaic { grid-template-columns: repeat(2, 1fr); }
+  .service-tile--xl { grid-column: span 2; grid-template-columns: 1.2fr 1fr; align-content: center; }
+  .symptoms-rail { grid-template-columns: repeat(2, 1fr); }
+  .consult { grid-template-columns: 1.05fr 1fr; }
+  .flow { grid-template-columns: repeat(2, 1fr); }
+  .articles { grid-template-columns: repeat(3, 1fr); }
+  .contacts-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+  .finale {
+    grid-template-columns: 1.4fr 1fr;
+    align-items: center;
+    padding: 2.4rem;
+  }
+  .footer-grid { grid-template-columns: 1.4fr 1fr 1fr 1.1fr; }
+  .gallery { grid-template-columns: repeat(4, 1fr); }
+  .gallery button:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+    min-height: 100%;
+  }
+}
+
+@media (min-width: 900px) {
+  .mobile-bar { display: none; }
+  .site-footer { padding-bottom: 3rem; }
+  .pad-b { padding-bottom: 0; }
+  .hero { align-items: center; }
+  .trust-grid { grid-template-columns: repeat(4, 1fr); }
+  .brands { grid-template-columns: repeat(5, 1fr); }
+}
+
+@media (min-width: 1100px) {
+  .nav-desk { display: flex; }
+  .burger, .drawer { display: none; }
+}
+
+@media (max-width: 374px) {
+  .hero h1 { font-size: 1.9rem; }
+  .hero-cta .btn { width: 100%; }
+}

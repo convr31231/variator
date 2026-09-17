@@ -1,0 +1,5 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700" fill="none">
+  <rect width="900" height="700" fill="#181c22"/>
+  <rect x="40" y="40" width="820" height="620" rx="20" stroke="#c9923a" stroke-opacity="0.35" stroke-width="2"/>
+  <text x="450" y="350" text-anchor="middle" fill="#9a958b" font-family="Arial" font-size="32">TODO: фото 5</text>
+</svg>

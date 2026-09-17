@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" fill="none">
+  <rect width="1800" height="1200" fill="#12161c"/>
+  <defs>
+    <linearGradient id="a" x1="900" y1="0" x2="1800" y2="1200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1c2430"/>
+      <stop offset="1" stop-color="#0c0e12"/>
+    </linearGradient>
+  </defs>
+  <rect width="1800" height="1200" fill="url(#a)"/>
+  <ellipse cx="1300" cy="380" rx="480" ry="320" fill="#d0a14f" fill-opacity="0.14"/>
+  <path d="M220 760c220-320 360-420 500-420s280 100 500 420" stroke="#d0a14f" stroke-opacity="0.35" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="720" cy="480" r="34" fill="#d0a14f" fill-opacity="0.65"/>
+  <rect x="980" y="520" width="520" height="220" rx="28" fill="#1a2029" stroke="#d0a14f" stroke-opacity="0.25"/>
+  <text x="220" y="980" fill="#6d6860" font-family="Arial" font-size="36">TODO: 70<5=8BL =0 D>B> A5@28A0 / 02B><>18;O</text>
+</svg>

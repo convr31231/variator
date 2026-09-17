@@ -1,33 +1,21 @@
-# ВариСервис — сайт ремонта вариаторов (Владивосток)
+# Сайт ремонта вариаторов (Владивосток)
 
-Многостраничный продающий сайт на React + Vite + TypeScript.
+Статический сайт: **HTML5 + CSS3 + JavaScript**. Без React/Vite/Node для просмотра.
 
 ## Запуск
 
-```bash
-npm install
-npm run dev
-```
-
-Сборка:
+Откройте `index.html` или:
 
 ```bash
-npm run build
-npm run preview
+python -m http.server 8780
 ```
 
-## Что заменить перед продакшеном
+## Данные
 
-1. `src/data/site.ts` — название, телефон, адрес, часы, координаты, мессенджеры, baseUrl
-2. `src/data/content.ts` — цены и преимущества (уберите плейсхолдеры в скобках)
-3. `src/data/cases.ts` — реальные кейсы (`published: true`)
-4. `src/data/reviews.ts` — реальные отзывы и ссылки на площадки
-5. `public/robots.txt` и `public/sitemap.xml` — домен вместо `example.ru`
-6. Аналитика: ID в `siteConfig.analytics`
+Все контакты и контент — в `js/data.js` (поля с TODO заменить на данные 2GIS).
 
-## Структура
+## Пересборка внутренних страниц
 
-- `src/components` — блоки UI
-- `src/pages` — SEO-страницы
-- `src/data` — контент и конфиг
-- `public` — robots, sitemap, favicon, OG
+```bash
+node scripts/build-pages.mjs
+```
