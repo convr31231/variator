@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="560" viewBox="0 0 800 560" fill="none">
+  <rect width="800" height="560" fill="#12161c"/>
+  <rect x="48" y="48" width="704" height="464" rx="20" stroke="rgba(245,240,232,0.12)" stroke-width="2"/>
+  <circle cx="400" cy="250" r="78" stroke="#d0a14f" stroke-width="3" fill="rgba(208,161,79,0.08)"/>
+  <circle cx="400" cy="250" r="28" fill="#d0a14f" opacity="0.85"/>
+  <text x="400" y="390" text-anchor="middle" fill="#9b958a" font-family="Arial,sans-serif" font-size="28">Ремень CVT</text>
+  <text x="400" y="430" text-anchor="middle" fill="#6d6860" font-family="Arial,sans-serif" font-size="18">фото запчасти</text>
+</svg>

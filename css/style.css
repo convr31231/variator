@@ -268,10 +268,10 @@ code { color: var(--accent); }
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 55% 45% at 78% 28%, rgba(208,161,79,0.16), transparent 58%),
-    linear-gradient(105deg, #090a0c 12%, rgba(9,10,12,0.72) 42%, rgba(9,10,12,0.35) 68%, rgba(9,10,12,0.55) 100%),
-    linear-gradient(180deg, rgba(9,10,12,0.25) 0%, transparent 35%, #090a0c 100%),
-    url("../images/hero/hero.png") center/cover no-repeat;
+    radial-gradient(ellipse 50% 40% at 82% 30%, rgba(208,161,79,0.12), transparent 55%),
+    linear-gradient(105deg, #090a0c 8%, rgba(9,10,12,0.82) 38%, rgba(9,10,12,0.45) 62%, rgba(9,10,12,0.62) 100%),
+    linear-gradient(180deg, rgba(9,10,12,0.35) 0%, transparent 32%, #090a0c 100%),
+    url("../images/hero/hero-transmission.png") right center / cover no-repeat;
 }
 
 .header-cta { display: none; }
@@ -489,6 +489,165 @@ code { color: var(--accent); }
   color: var(--accent);
 }
 
+/* Parts catalog */
+.parts-filter {
+  margin-bottom: 1.5rem;
+}
+
+.parts-filter__label {
+  margin-bottom: 0.75rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.parts-filter__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.parts-chip {
+  min-height: 40px;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg-3);
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: 0.2s var(--ease);
+}
+
+.parts-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.parts-chip.is-active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.parts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.part-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: var(--bg-3);
+  overflow: hidden;
+  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.part-card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
+}
+
+.part-card__media {
+  aspect-ratio: 4 / 3;
+  background: var(--bg-2);
+  overflow: hidden;
+}
+
+.part-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.part-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1.15rem 1.2rem 1.25rem;
+  flex: 1;
+}
+
+.part-card__body h3 {
+  font-size: 1.15rem;
+}
+
+.part-card__desc {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.part-card__fits span {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--dim);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.part-card__fits ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.part-card__fits li {
+  padding: 0.28rem 0.55rem;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.part-card__foot {
+  margin-top: auto;
+  display: grid;
+  gap: 0.85rem;
+  padding-top: 0.35rem;
+}
+
+.part-card__price span {
+  display: block;
+  color: var(--dim);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.15rem;
+}
+
+.part-card__price strong {
+  color: var(--accent);
+  font-size: 1.2rem;
+  font-family: var(--font-d);
+  font-weight: 500;
+}
+
+.parts-vin {
+  margin-top: 1.75rem;
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.5rem 1.4rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, rgba(208, 161, 79, 0.08), transparent 55%), var(--bg-2);
+}
+
+.parts-vin h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.parts-vin p {
+  color: var(--muted);
+  max-width: 52ch;
+}
+
 /* Transparent flow */
 .flow {
   display: grid;
@@ -531,6 +690,51 @@ code { color: var(--accent); }
 }
 
 .price-panel p { color: var(--muted); max-width: 60ch; }
+
+.price-list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.price-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem 1.25rem;
+  align-items: baseline;
+  padding: 1.1rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--bg-3);
+}
+
+.price-row__title {
+  font-family: var(--font-d);
+  font-size: 1.02rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.price-row__value {
+  color: var(--accent);
+  font-size: 1.05rem;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.price-note {
+  margin-top: 1.15rem;
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.brands-note {
+  margin-top: 1.15rem;
+  color: var(--muted);
+  font-size: 0.98rem;
+  max-width: 48ch;
+}
 
 /* Cases / reviews empty */
 .empty {

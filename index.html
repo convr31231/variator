@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Ремонт вариаторов во Владивостоке — диагностика и сервис CVT</title>
-  <meta name="description" content="Ремонт вариаторов во Владивостоке: диагностика CVT, согласование работ, ремонт и проверка. Запись на диагностику.">
+  <meta name="description" content="Ремонт вариаторов во Владивостоке: диагностика CVT, дефектовка, согласование стоимости и ремонт. Запись на диагностику.">
   <link rel="canonical" href="https://example.ru/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Ремонт вариаторов во Владивостоке">
-  <meta property="og:description" content="Диагностика, ремонт и обслуживание вариаторов. Запись на диагностику.">
-  <meta property="og:image" content="https://example.ru/images/hero/hero.png">
+  <meta property="og:description" content="Диагностика, ремонт вариаторов (CVT) и АКПП. После диагностики — предварительная оценка, точная стоимость после дефектовки.">
+  <meta property="og:image" content="https://example.ru/images/hero/hero-transmission.png">
   <meta property="og:locale" content="ru_RU">
   <meta name="theme-color" content="#090a0c">
   <link rel="icon" href="images/icons/favicon.svg" type="image/svg+xml">
@@ -45,6 +45,7 @@
       </a>
       <nav class="nav-desk" aria-label="Основная навигация">
         <a href="services.html">Услуги</a>
+        <a href="#zapchasti">Запчасти</a>
         <a href="about.html">О компании</a>
         <a href="prices.html">Цены</a>
         <a href="cases.html">Кейсы</a>
@@ -61,6 +62,7 @@
     <div class="drawer" data-drawer>
       <nav aria-label="Мобильное меню">
         <a href="services.html">Услуги</a>
+        <a href="#zapchasti">Запчасти</a>
         <a href="about.html">О компании</a>
         <a href="prices.html">Цены</a>
         <a href="cases.html">Кейсы</a>
@@ -81,7 +83,7 @@
       <div class="wrap hero-content">
         <p class="kicker">Автосервис · Владивосток</p>
         <h1>Ремонт вариаторов во Владивостоке</h1>
-        <p class="hero-sub">Диагностика, ремонт и обслуживание CVT. Выясняем причину, согласуем работы и только потом приступаем к ремонту.</p>
+        <p class="hero-sub">Диагностика, ремонт вариаторов (CVT) и АКПП. После диагностики возможна предварительная оценка. Точную стоимость определяем после дефектовки и согласуем перед ремонтом.</p>
         <div class="hero-cta">
           <button class="btn btn--primary" type="button" data-open-modal="book">Записаться на диагностику</button>
           <a class="btn btn--ghost" data-href="phone" href="tel:+70000000000">Позвонить</a>
@@ -110,7 +112,7 @@
           <div>
             <p class="kicker">Услуги</p>
             <h2 class="title">Что ремонтируем</h2>
-            <p class="lead">Главный фокус — вариаторы. Также работаем с АКПП и обслуживанием жидкости CVT.</p>
+            <p class="lead">Главный фокус — ремонт вариаторов (CVT). Также работаем с АКПП и заменой масла.</p>
           </div>
           <a class="btn btn--ghost" href="services.html">Все услуги</a>
         </div>
@@ -118,7 +120,32 @@
       </div>
     </section>
 
-    <section class="section" id="simptomy">
+    <section class="section" id="zapchasti">
+      <div class="wrap">
+        <div class="head reveal">
+          <p class="kicker">Запчасти</p>
+          <h2 class="title">Запчасти для ремонта вариаторов</h2>
+          <p class="lead">Используем проверенные комплектующие. Подбираем детали по марке автомобиля, модели вариатора и задаче ремонта.</p>
+        </div>
+
+        <div class="parts-filter reveal" data-parts-filter aria-label="Фильтр по марке">
+          <p class="parts-filter__label">Выберите марку автомобиля</p>
+          <div class="parts-filter__chips" data-parts-chips></div>
+        </div>
+
+        <div class="parts-grid" data-parts></div>
+
+        <div class="parts-vin reveal">
+          <div>
+            <h3>Не нашли нужную деталь?</h3>
+            <p data-text="partsVinNote">Отправьте VIN автомобиля или модель вариатора — мы проверим совместимость и стоимость.</p>
+          </div>
+          <button class="btn btn--primary" type="button" data-open-modal="book" data-part-title="Подбор запчасти по VIN" data-part-message="Нужна проверка совместимости запчасти. VIN / модель вариатора: ">Отправить VIN</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--band" id="simptomy">
       <div class="wrap">
         <div class="head head--split reveal">
           <div>
@@ -132,12 +159,12 @@
       </div>
     </section>
 
-    <section class="section section--band" id="diagnostika">
+    <section class="section" id="diagnostika">
       <div class="wrap">
         <div class="head reveal">
           <p class="kicker">Процесс</p>
           <h2 class="title">Начинаем с диагностики</h2>
-          <p class="lead">Не обещаем результат «на глаз». Сначала причина — потом решение.</p>
+          <p class="lead">Диагностика помогает оценить состояние коробки и определить дальнейшие действия. Точную стоимость ремонта определяем после дефектовки.</p>
         </div>
         <div class="timeline" data-steps></div>
       </div>
@@ -179,12 +206,12 @@
           <div>
             <p class="kicker">Марки</p>
             <h2 class="title">С какими автомобилями работаем</h2>
-            <p class="lead">SEO-каталог популярных CVT. Список марок уточняется у заказчика — страницы можно расширять.</p>
+            <p class="lead">Работаем с популярными марками с вариаторами. Если вашей марки нет в списке — уточните возможность ремонта.</p>
           </div>
           <a class="btn btn--ghost" href="variatory/index.html">Каталог вариаторов</a>
         </div>
         <div class="brands" data-brands></div>
-        <p class="todo" style="margin-top:1rem">TODO: подтвердить актуальный список марок в карточке бизнеса</p>
+        <p class="brands-note" data-brands-note></p>
       </div>
     </section>
 
@@ -193,7 +220,7 @@
         <div class="head head--split reveal">
           <div>
             <p class="kicker">Цены</p>
-            <h2 class="title">Стоимость ремонта</h2>
+            <h2 class="title">Ориентировочная стоимость услуг</h2>
           </div>
           <button class="btn btn--primary" type="button" data-open-modal="book">Узнать стоимость</button>
         </div>
@@ -205,8 +232,8 @@
       <div class="wrap">
         <div class="head reveal">
           <p class="kicker">Прозрачность</p>
-          <h2 class="title">Перед ремонтом вы знаете, что и за что платите</h2>
-          <p class="lead">Простая схема без скрытых шагов.</p>
+          <h2 class="title">Точную стоимость определяем после дефектовки</h2>
+          <p class="lead">Дальнейший ремонт выполняем после согласования стоимости с клиентом.</p>
         </div>
         <div class="flow" data-flow></div>
       </div>
@@ -338,6 +365,7 @@
           <li><a href="services/remont-variatora.html">Ремонт вариатора</a></li>
           <li><a href="services/remont-akpp.html">Ремонт АКПП</a></li>
           <li><a href="services/zamena-masla.html">Замена масла</a></li>
+          <li><a href="#zapchasti">Запчасти</a></li>
         </ul>
       </div>
       <div>
@@ -382,7 +410,7 @@
           <label class="field"><span>Телефон</span><input name="phone" type="tel" required autocomplete="tel" placeholder="+7 (___) ___-__-__"></label>
           <label class="field"><span>Марка автомобиля</span><input name="car"></label>
           <label class="field"><span>Модель</span><input name="model"></label>
-          <label class="field"><span>Описание проблемы</span><textarea name="message" rows="3"></textarea></label>
+          <label class="field"><span>Описание проблемы</span><textarea name="message" rows="3" data-modal-message></textarea></label>
           <label class="consent"><input type="checkbox" name="consent" required><span>Согласен с <a href="consent.html" target="_blank" rel="noopener">обработкой персональных данных</a></span></label>
           <p class="form-error" data-error hidden></p>
           <button class="btn btn--primary btn--block" type="submit">Записаться на диагностику</button>

@@ -19,6 +19,8 @@
       tagline: B.tagline,
       entity: B.legal.entity,
       priceNote: B.priceNote,
+      priceDisclaimer: B.priceDisclaimer,
+      partsVinNote: B.partsVinNote,
     };
     if (map[key] != null) el.textContent = map[key];
   });
@@ -112,14 +114,85 @@
       .join('');
   }
 
+  const brandsNote = document.querySelector('[data-brands-note]');
+  if (brandsNote && B.brandsNote) brandsNote.textContent = B.brandsNote;
+
+  // Parts catalog
+  const partsRoot = document.querySelector('[data-parts]');
+  const partsChips = document.querySelector('[data-parts-chips]');
+  let partsFilter = 'all';
+
+  function renderParts() {
+    if (!partsRoot || !B.parts) return;
+    const list =
+      partsFilter === 'all'
+        ? B.parts
+        : B.parts.filter((p) => (p.brands || []).includes(partsFilter));
+
+    if (!list.length) {
+      partsRoot.innerHTML = `<div class="empty reveal"><strong>Нет позиций по марке</strong><p>Выберите другую марку или отправьте VIN — подберём деталь.</p></div>`;
+      return;
+    }
+
+    partsRoot.innerHTML = list
+      .map((p) => {
+        const fits = (p.fits || []).map((f) => `<li>${f}</li>`).join('');
+        return `<article class="part-card reveal" data-part-brands="${(p.brands || []).join(',')}">
+          <div class="part-card__media">
+            <img src="${withBase(p.image)}" alt="${p.title}" loading="lazy" width="800" height="560">
+          </div>
+          <div class="part-card__body">
+            <h3>${p.title}</h3>
+            <p class="part-card__desc">${p.description}</p>
+            <div class="part-card__fits">
+              <span>Подходит для:</span>
+              <ul>${fits}</ul>
+            </div>
+            <div class="part-card__foot">
+              <div class="part-card__price"><span>Стоимость</span><strong>${p.price}</strong></div>
+              <button class="btn btn--soft btn--block" type="button"
+                data-open-modal="book"
+                data-part-title="Уточнить наличие: ${p.title}"
+                data-part-message="Интересует запчасть: ${p.title}. Стоимость на сайте: ${p.price}. Нужно уточнить наличие и совместимость.">
+                Уточнить наличие
+              </button>
+            </div>
+          </div>
+        </article>`;
+      })
+      .join('');
+  }
+
+  if (partsChips && B.partsFilters) {
+    const chips = ['Все', ...B.partsFilters]
+      .map((name, i) => {
+        const value = name === 'Все' ? 'all' : name;
+        return `<button type="button" class="parts-chip${i === 0 ? ' is-active' : ''}" data-filter="${value}">${name}</button>`;
+      })
+      .join('');
+    partsChips.innerHTML = chips;
+    partsChips.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-filter]');
+      if (!btn) return;
+      partsFilter = btn.getAttribute('data-filter') || 'all';
+      partsChips.querySelectorAll('.parts-chip').forEach((c) => c.classList.toggle('is-active', c === btn));
+      renderParts();
+    });
+  }
+  renderParts();
+
   const prices = document.querySelector('[data-prices]');
   if (prices) {
     if (B.prices.length) {
-      prices.innerHTML = B.prices
-        .map((p) => `<div class="flow-item"><div><h3>${p.title}</h3><p>${p.note || ''}</p></div><strong style="color:var(--accent)">${p.price}</strong></div>`)
+      const rows = B.prices
+        .map(
+          (p) => `<div class="price-row reveal"><span class="price-row__title">${p.title}</span><strong class="price-row__value">${p.price}</strong></div>`,
+        )
         .join('');
+      const note = B.priceDisclaimer || B.priceNote;
+      prices.innerHTML = `<div class="price-list">${rows}</div><p class="price-note reveal">${note}</p>`;
     } else {
-      prices.innerHTML = `<div class="price-panel reveal"><p>${B.priceNote}</p><p class="todo" style="margin-top:1rem">TODO: добавить прайс после получения данных заказчика</p></div>`;
+      prices.innerHTML = `<div class="price-panel reveal"><p>${B.priceNote}</p></div>`;
     }
   }
 

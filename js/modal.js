@@ -14,11 +14,43 @@
       document.body.classList.remove('is-locked');
     }
   }
+
+  function applyPartContext(btn, modal) {
+    if (!btn || !modal) return;
+    const title = btn.getAttribute('data-part-title');
+    const message = btn.getAttribute('data-part-message');
+    const heading = modal.querySelector('#book-title');
+    const textarea = modal.querySelector('[data-modal-message], textarea[name="message"]');
+    const submit = modal.querySelector('[type="submit"]');
+    const form = modal.querySelector('[data-form]');
+
+    if (title && heading) heading.textContent = title;
+    else if (heading) heading.textContent = 'Записаться на диагностику';
+
+    if (message && textarea) {
+      textarea.value = message;
+      textarea.focus();
+    }
+
+    if (title && form) {
+      form.dataset.source = 'запчасти';
+      form.dataset.submitLabel = 'Уточнить наличие';
+      if (submit) submit.textContent = 'Уточнить наличие';
+    } else if (form) {
+      form.dataset.source = 'модальная запись';
+      form.dataset.submitLabel = 'Записаться на диагностику';
+      if (submit) submit.textContent = 'Записаться на диагностику';
+    }
+  }
+
   document.addEventListener('click', (e) => {
     const openBtn = e.target.closest('[data-open-modal]');
     if (openBtn) {
       e.preventDefault();
-      openModal(openBtn.getAttribute('data-open-modal'));
+      const id = openBtn.getAttribute('data-open-modal');
+      const modal = document.getElementById(id);
+      applyPartContext(openBtn, modal);
+      openModal(id);
     }
     if (e.target.closest('[data-close-modal]')) closeModal(e.target.closest('.overlay'));
     if (e.target.classList.contains('overlay')) closeModal(e.target);
