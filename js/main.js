@@ -39,13 +39,50 @@
     el.href = url;
   });
 
+  const messengerIcons = {
+    whatsapp: {
+      label: 'WhatsApp',
+      svg: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.15 6.4 2.15 11.84c0 1.98.57 3.84 1.56 5.42L2 22l4.9-1.58a9.86 9.86 0 0 0 5.14 1.42h.01c5.46 0 9.89-4.4 9.89-9.84C21.94 6.4 17.5 2 12.04 2zm5.73 13.95c-.24.68-1.4 1.25-1.93 1.33-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.26-4.79-4.19-4.93-4.38-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.07.99-2.35.26-.28.57-.35.76-.35h.55c.18 0 .41-.07.64.49.24.58.81 2 .88 2.14.07.14.12.31.02.5-.1.19-.15.31-.3.48-.15.16-.31.36-.44.49-.15.14-.3.29-.13.57.17.28.76 1.25 1.63 2.03 1.12 1 2.07 1.31 2.36 1.46.29.14.46.12.63-.07.17-.19.73-.85.93-1.14.2-.29.39-.24.66-.14.26.1 1.67.79 1.96.93.28.14.47.21.54.33.07.12.07.69-.17 1.37z"/></svg>',
+    },
+    telegram: {
+      label: 'Telegram',
+      svg: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.94 4.24 19.1 19.35c-.2 1-.76 1.24-1.54.77l-4.27-3.15-2.06 1.98c-.23.23-.42.42-.86.42l.31-4.35 7.91-7.14c.34-.31-.08-.48-.53-.17l-9.77 6.15-4.21-1.32c-.92-.28-.93-.9.2-1.34L20.55 3.3c.77-.28 1.44.17 1.39.94z"/></svg>',
+    },
+    max: {
+      label: 'MAX',
+      svg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><path d="M7.5 15.5V8.5L12 13l4.5-4.5v7"/></svg>',
+    },
+  };
+
+  function renderMessengerIcons(container) {
+    if (!container) return false;
+    const items = Object.entries(B.messengers || {}).filter(([, url]) => !!url);
+    if (!items.length) {
+      container.innerHTML = '';
+      return false;
+    }
+    container.innerHTML = items
+      .map(([key, url]) => {
+        const meta = messengerIcons[key] || { label: key, svg: '' };
+        return `<a class="messenger-icon" href="${url}" target="_blank" rel="noopener noreferrer" aria-label="${meta.label}" title="${meta.label}">${meta.svg}<span class="visually-hidden">${meta.label}</span></a>`;
+      })
+      .join('');
+    return true;
+  }
+
+  const headerMessengers = document.querySelector('[data-header-messengers]');
+  const hasMessengers = renderMessengerIcons(document.querySelector('[data-messenger-icons]'));
+  renderMessengerIcons(document.querySelector('[data-messenger-icons-mobile]'));
+  renderMessengerIcons(document.querySelector('[data-messenger-icons-contacts]'));
+  if (headerMessengers) headerMessengers.hidden = !hasMessengers;
+
   document.querySelectorAll('[data-map]').forEach((el) => {
     const key = el.getAttribute('data-map');
     const url = B.maps[key];
     if (!url) {
       el.addEventListener('click', (e) => {
         e.preventDefault();
-        alert('TODO: добавьте ссылку на карту в js/data.js');
+        alert('Ссылка на карту пока не добавлена. Уточните адрес по телефону.');
       });
     } else el.href = url;
   });
@@ -110,7 +147,11 @@
   const brands = document.querySelector('[data-brands]');
   if (brands) {
     brands.innerHTML = B.brands
-      .map((b) => `<a class="brand-pill reveal" href="${withBase(b.href)}">${b.name}</a>`)
+      .map((b) =>
+        b.href
+          ? `<a class="brand-pill reveal" href="${withBase(b.href)}">${b.name}</a>`
+          : `<span class="brand-pill reveal">${b.name}</span>`,
+      )
       .join('');
   }
 
@@ -130,7 +171,7 @@
         : B.parts.filter((p) => (p.brands || []).includes(partsFilter));
 
     if (!list.length) {
-      partsRoot.innerHTML = `<div class="empty reveal"><strong>Нет позиций по марке</strong><p>Выберите другую марку или отправьте VIN — подберём деталь.</p></div>`;
+      partsRoot.innerHTML = `<div class="empty reveal"><strong>Нет позиций по марке</strong><p>Выберите другую марку или отправьте номер кузова / VIN — подберём деталь.</p></div>`;
       return;
     }
 

@@ -40,30 +40,43 @@ ${modal(base)}
 
 function chrome(base) {
   return `<header class="site-header" data-header>
-  <div class="wrap header-row">
-    <a class="brand" href="${base}index.html"><span class="brand-mark"></span><span><strong data-text="shortName">Пример</strong><small>Владивосток</small></span></a>
-    <nav class="nav-desk" aria-label="Навигация">
-      <a href="${base}services.html">Услуги</a>
-      <a href="${base}about.html">О компании</a>
-      <a href="${base}prices.html">Цены</a>
-      <a href="${base}cases.html">Кейсы</a>
-      <a href="${base}contacts.html">Контакты</a>
-    </nav>
-    <div class="header-side">
-      <a class="header-phone" data-href="phone" href="tel:+70000000000"><span data-text="phone"></span></a>
-      <button class="btn btn--primary header-cta" type="button" data-open-modal="book">Записаться</button>
-      <button class="burger" type="button" aria-label="Меню" aria-expanded="false" data-burger>☰</button>
+  <div class="wrap">
+    <div class="header-row">
+      <a class="brand" href="${base}index.html"><span class="brand-mark"></span><span><strong data-text="shortName">Пример</strong><small>Владивосток</small></span></a>
+      <nav class="nav-desk" aria-label="Навигация">
+        <a href="${base}services.html">Услуги</a>
+        <a href="${base}index.html#zapchasti">Запчасти</a>
+        <a href="${base}about.html">О компании</a>
+        <a href="${base}prices.html">Цены</a>
+        <a href="${base}cases.html">Кейсы</a>
+        <a href="${base}contacts.html">Контакты</a>
+      </nav>
+      <div class="header-side">
+        <a class="header-phone" data-href="phone" href="tel:+70000000000"><span data-text="phone"></span></a>
+        <button class="btn btn--primary header-cta" type="button" data-open-modal="book">Записаться</button>
+        <button class="burger" type="button" aria-label="Меню" aria-expanded="false" data-burger>☰</button>
+      </div>
+    </div>
+    <div class="header-contacts">
+      <p class="header-address"><span class="header-contacts__label">Адрес</span><span data-text="address"></span></p>
+      <div class="header-messengers" data-header-messengers hidden>
+        <span class="header-contacts__label">Написать в мессенджер:</span>
+        <div class="messenger-icons" data-messenger-icons></div>
+      </div>
     </div>
   </div>
   <div class="drawer" data-drawer>
     <nav>
       <a href="${base}services.html">Услуги</a>
+      <a href="${base}index.html#zapchasti">Запчасти</a>
       <a href="${base}about.html">О компании</a>
       <a href="${base}prices.html">Цены</a>
       <a href="${base}cases.html">Кейсы</a>
       <a href="${base}contacts.html">Контакты</a>
     </nav>
     <div class="drawer-actions">
+      <p class="drawer-address" data-text="address"></p>
+      <div class="messenger-icons" data-messenger-icons-mobile></div>
       <button class="btn btn--primary" type="button" data-open-modal="book">Записаться</button>
     </div>
   </div>
@@ -96,7 +109,8 @@ function modal(base) {
         <label class="field"><span>Телефон</span><input name="phone" type="tel" required placeholder="+7 (___) ___-__-__"></label>
         <label class="field"><span>Марка автомобиля</span><input name="car"></label>
         <label class="field"><span>Модель</span><input name="model"></label>
-        <label class="field"><span>Описание проблемы</span><textarea name="message" rows="3"></textarea></label>
+        <label class="field"><span>Номер кузова или VIN</span><input name="vin" autocomplete="off" placeholder="Укажите номер кузова или VIN автомобиля" data-modal-vin></label>
+        <label class="field"><span>Описание проблемы</span><textarea name="message" rows="3" data-modal-message></textarea></label>
         <label class="consent"><input type="checkbox" name="consent" required><span>Согласен с <a href="${base}consent.html" target="_blank" rel="noopener">обработкой персональных данных</a></span></label>
         <p class="form-error" data-error hidden></p>
         <button class="btn btn--primary btn--block" type="submit">Записаться на диагностику</button>
@@ -156,13 +170,13 @@ const services = [
   },
   {
     file: 'services/zamena-masla.html',
-    title: 'Замена масла в вариаторе во Владивостоке',
-    desc: 'Замена масла в вариаторе во Владивостоке: подбор масла под тип CVT.',
-    h1: 'Замена масла в вариаторе во Владивостоке',
-    short: 'Замена масла в вариаторе с подбором подходящего масла.',
-    body: `<p>Подбираем масло под тип вариатора. При необходимости оцениваем состояние масла и фильтр.</p>
+    title: 'Замена масла во Владивостоке',
+    desc: 'Замена масла в вариаторе, АКПП и DSG во Владивостоке с подбором жидкости по каталогу.',
+    h1: 'Замена масла во Владивостоке',
+    short: 'Замена масла в вариаторе, АКПП, DSG с подбором подходящей жидкости по каталогу.',
+    body: `<p>Подбираем жидкость по каталогу под тип коробки: вариатор, АКПП или DSG. При необходимости оцениваем состояние масла и фильтр.</p>
       <h2 style="color:var(--text);margin:1.5rem 0 .75rem;font-size:1.25rem">Стоимость</h2>
-      <p>Ориентир: от 4 000 ₽. Указаны ориентировочные цены.</p>`,
+      <p>Ориентир для замены масла в вариаторе: от 4 000 ₽, в АКПП: от 3 500 ₽. Точную сумму уточняем после подбора жидкости.</p>`,
   },
 ];
 
@@ -204,7 +218,7 @@ write(
     canonical: 'https://example.ru/variatory/',
     base: '../',
     body:
-      pageTop(`<a href="../index.html">Главная</a><span>/</span><span>Вариаторы</span>`, 'Вариаторы по маркам', 'Страницы по популярным CVT. Если вашей марки нет в списке — уточните возможность ремонта.') +
+      pageTop(`<a href="../index.html">Главная</a><span>/</span><span>Вариаторы</span>`, 'Вариаторы по маркам', 'Работаем с популярными марками. Если вашей марки нет в списке — уточните возможность ремонта.') +
       `<section class="section" style="padding-top:0"><div class="wrap"><div class="brands" data-brands></div><p class="brands-note" data-brands-note></p></div></section>`,
   }),
 );
@@ -339,7 +353,7 @@ const simple = [
     'Автосервис во Владивостоке со специализацией на вариаторах и АКПП.',
     'О компании',
     'Фокус на диагностике и ремонте CVT.',
-    `<article class="contact-card prose"><p>Мы позиционируем сервис как профильный по вариаторам: симптомы → диагностика → согласование → ремонт.</p><p class="todo">TODO: добавить реальное описание компании из 2GIS.</p></article><div class="trust-grid" data-trust style="margin-top:1rem"></div>`,
+    `<article class="contact-card prose"><p>Мы позиционируем сервис как профильный по вариаторам (CVT), АКПП и DSG: симптомы → диагностика → согласование → ремонт.</p></article><div class="trust-grid" data-trust style="margin-top:1rem"></div>`,
   ],
   [
     'contacts.html',
@@ -347,7 +361,7 @@ const simple = [
     'Адрес, телефон и запись на диагностику вариатора во Владивостоке.',
     'Контакты',
     'Свяжитесь с сервисом или оставьте заявку.',
-    `<div class="contacts-grid"><div class="contact-card"><ul class="contact-list"><li><span>Адрес</span><strong data-text="address"></strong></li><li><span>Телефон</span><strong><a data-href="phone" href="tel:+70000000000"><span data-text="phone"></span></a></strong></li><li><span>График</span><strong data-text="weekdays"></strong><br><strong data-text="weekend"></strong></li></ul><div class="contact-actions"><a class="btn btn--primary" data-href="phone" href="tel:+70000000000">Позвонить</a><button class="btn btn--soft" type="button" data-open-modal="book">Записаться</button><a class="btn btn--ghost" data-map="route" href="#">Построить маршрут</a></div></div><div class="map-box"><p>TODO: карта 2GIS / Яндекс</p><p style="margin-top:1rem"><a class="btn btn--ghost" data-map="twogis" href="#">2GIS</a> <a class="btn btn--ghost" data-map="yandex" href="#">Яндекс</a></p></div></div>`,
+    `<div class="contacts-grid"><div class="contact-card"><ul class="contact-list"><li><span>Адрес</span><strong data-text="address"></strong></li><li><span>Телефон</span><strong><a data-href="phone" href="tel:+70000000000"><span data-text="phone"></span></a></strong></li><li><span>График</span><strong data-text="weekdays"></strong><br><strong data-text="weekend"></strong></li></ul><div class="contact-actions"><a class="btn btn--primary" data-href="phone" href="tel:+70000000000">Позвонить</a><button class="btn btn--soft" type="button" data-open-modal="book">Записаться</button><a class="btn btn--ghost" data-map="route" href="#">Построить маршрут</a></div></div><div class="map-box"><p>Карта появится после добавления ссылки 2GIS / Яндекс Карт.</p><p style="margin-top:1rem"><a class="btn btn--ghost" data-map="twogis" href="#">2GIS</a> <a class="btn btn--ghost" data-map="yandex" href="#">Яндекс</a></p></div></div>`,
   ],
 ];
 

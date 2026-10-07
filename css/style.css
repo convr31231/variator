@@ -16,6 +16,7 @@
   --radius: 16px;
   --radius-lg: 28px;
   --header: 74px;
+  --header-contacts: 42px;
   --bar: 70px;
   --max: 1200px;
   --font-d: "Unbounded", system-ui, sans-serif;
@@ -30,7 +31,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--header) + 16px);
+  scroll-padding-top: calc(var(--header) + var(--header-contacts) + 16px);
 }
 
 body {
@@ -89,6 +90,10 @@ h1, h2, h3, h4 {
   max-width: 14ch;
 }
 
+.title--parts {
+  max-width: 22ch;
+}
+
 .lead {
   margin-top: 1rem;
   max-width: 52ch;
@@ -139,7 +144,17 @@ h1, h2, h3, h4 {
   font-size: 0.82rem;
 }
 
-.todo { color: var(--dim); font-style: italic; }
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 code { color: var(--accent); }
 
 /* Header */
@@ -147,7 +162,7 @@ code { color: var(--accent); }
   position: fixed;
   inset: 0 0 auto;
   z-index: 100;
-  height: var(--header);
+  min-height: var(--header);
   background: rgba(9, 10, 12, 0.7);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid transparent;
@@ -160,11 +175,81 @@ code { color: var(--accent); }
 }
 
 .header-row {
-  height: 100%;
+  min-height: var(--header);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+}
+
+.header-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 1.25rem;
+  padding: 0 0 0.7rem;
+  border-top: 1px solid var(--line);
+}
+
+.header-contacts__label {
+  color: var(--dim);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-right: 0.35rem;
+}
+
+.header-address {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.5rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  max-width: 100%;
+}
+
+.header-messengers {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.65rem;
+}
+
+.messenger-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.messenger-icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  border: 1px solid var(--line-strong);
+  background: var(--bg-3);
+  color: var(--text);
+  transition: 0.2s var(--ease);
+}
+
+.messenger-icon:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.messenger-icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.drawer-address {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-bottom: 0.35rem;
 }
 
 .brand {
@@ -235,9 +320,13 @@ code { color: var(--accent); }
 
 .drawer {
   position: fixed;
-  inset: var(--header) 0 0;
+  inset: 0 0 0;
+  top: 0;
+  padding-top: calc(var(--header) + var(--header-contacts) + 0.5rem);
   background: rgba(9, 10, 12, 0.98);
-  padding: 1.2rem;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  padding-bottom: 1.2rem;
   transform: translateX(100%);
   transition: transform 0.3s var(--ease);
   overflow: auto;
@@ -260,7 +349,7 @@ code { color: var(--accent); }
   min-height: 100svh;
   display: grid;
   align-items: end;
-  padding: calc(var(--header) + 2rem) 0 3rem;
+  padding: calc(var(--header) + var(--header-contacts) + 2rem) 0 3rem;
   overflow: hidden;
 }
 
@@ -482,11 +571,22 @@ code { color: var(--accent); }
   font-family: var(--font-d);
   font-size: 1rem;
   transition: 0.25s var(--ease);
+  text-align: center;
+  padding: 0.75rem;
 }
 
 .brand-pill:hover {
   border-color: var(--accent);
   color: var(--accent);
+}
+
+span.brand-pill {
+  cursor: default;
+}
+
+span.brand-pill:hover {
+  border-color: var(--line);
+  color: inherit;
 }
 
 /* Parts catalog */

@@ -19,27 +19,32 @@
     if (!btn || !modal) return;
     const title = btn.getAttribute('data-part-title');
     const message = btn.getAttribute('data-part-message');
+    const focusVin = btn.hasAttribute('data-focus-vin');
     const heading = modal.querySelector('#book-title');
     const textarea = modal.querySelector('[data-modal-message], textarea[name="message"]');
+    const vinInput = modal.querySelector('[data-modal-vin], input[name="vin"]');
     const submit = modal.querySelector('[type="submit"]');
     const form = modal.querySelector('[data-form]');
 
     if (title && heading) heading.textContent = title;
     else if (heading) heading.textContent = 'Записаться на диагностику';
 
-    if (message && textarea) {
-      textarea.value = message;
-      textarea.focus();
-    }
+    if (message && textarea) textarea.value = message;
 
     if (title && form) {
       form.dataset.source = 'запчасти';
-      form.dataset.submitLabel = 'Уточнить наличие';
-      if (submit) submit.textContent = 'Уточнить наличие';
+      form.dataset.submitLabel = focusVin ? 'Проверить совместимость' : 'Уточнить наличие';
+      if (submit) submit.textContent = form.dataset.submitLabel;
     } else if (form) {
       form.dataset.source = 'модальная запись';
       form.dataset.submitLabel = 'Записаться на диагностику';
       if (submit) submit.textContent = 'Записаться на диагностику';
+    }
+
+    if (focusVin && vinInput) {
+      setTimeout(() => vinInput.focus(), 30);
+    } else if (message && textarea) {
+      setTimeout(() => textarea.focus(), 30);
     }
   }
 

@@ -1,6 +1,5 @@
 /**
- * Данные бизнеса. TODO — заменить на данные из 2GIS / заказчика.
- * Не публикуйте плейсхолдеры как факты.
+ * Данные бизнеса. Заполните контакты и мессенджеры перед публикацией.
  */
 window.BUSINESS = {
   name: 'Пример',
@@ -16,7 +15,6 @@ window.BUSINESS = {
     weekend: 'Сб–Вс: [время]',
     short: '[График работы]',
   },
-  /** Координаты — только после подтверждения */
   geo: null,
   maps: {
     yandex: '',
@@ -68,8 +66,8 @@ window.BUSINESS = {
     },
     {
       slug: 'zamena-masla',
-      title: 'Замена масла в вариаторе',
-      short: 'Замена масла в вариаторе с подбором подходящего масла под тип CVT.',
+      title: 'Замена масла',
+      short: 'Замена масла в вариаторе, АКПП, DSG с подбором подходящей жидкости по каталогу.',
       href: 'services/zamena-masla.html',
       featured: false,
       price: 'от 4 000 ₽',
@@ -115,16 +113,20 @@ window.BUSINESS = {
     'Указаны ориентировочные цены. Точная стоимость ремонта определяется после дефектовки — разборки и проверки деталей.',
 
   brandsNote: 'Не нашли свою марку? Уточните возможность ремонта вашей модели.',
-  /** Марки с отдельными SEO-страницами в проекте. Расширение — только по списку заказчика. */
   brands: [
     { slug: 'toyota', name: 'Toyota', href: 'variatory/toyota.html' },
     { slug: 'nissan', name: 'Nissan', href: 'variatory/nissan.html' },
     { slug: 'honda', name: 'Honda', href: 'variatory/honda.html' },
     { slug: 'subaru', name: 'Subaru', href: 'variatory/subaru.html' },
     { slug: 'mitsubishi', name: 'Mitsubishi', href: 'variatory/mitsubishi.html' },
+    { slug: 'suzuki', name: 'Suzuki', href: '' },
+    { slug: 'lexus', name: 'Lexus', href: '' },
+    { slug: 'infiniti', name: 'Infiniti', href: '' },
+    { slug: 'mazda', name: 'Mazda', href: '' },
+    { slug: 'daihatsu', name: 'Daihatsu', href: '' },
+    { slug: 'renault', name: 'Renault', href: '' },
   ],
 
-  /** Запчасти — каталог для заявок, не интернет-магазин. Легко расширяется. */
   partsFilters: ['Nissan', 'Mitsubishi', 'Toyota', 'Subaru', 'Renault'],
   parts: [
     {
@@ -175,24 +177,24 @@ window.BUSINESS = {
     {
       id: 'valve-body',
       title: 'Ремкомплект гидроблока',
-      description: 'Соленоиды и элементы гидроблока. Совместимость проверяем по VIN и коду вариатора.',
+      description: 'Соленоиды и элементы гидроблока. Совместимость проверяем по номеру кузова / VIN и коду вариатора.',
       image: 'images/parts/valve-body.svg',
       fits: ['Nissan Qashqai', 'Nissan X-Trail', 'Subaru XV'],
       brands: ['Nissan', 'Subaru'],
       price: 'от 12 000 ₽',
     },
   ],
-  partsVinNote: 'Отправьте VIN автомобиля или модель вариатора — мы проверим совместимость и стоимость.',
+  partsVinNote: 'Отправьте номер кузова, VIN автомобиля — мы проверим совместимость и стоимость.',
 
   cases: [],
   reviews: [],
   gallery: [
-    { src: 'images/gallery/g1.svg', alt: 'TODO: фото сервиса' },
-    { src: 'images/gallery/g2.svg', alt: 'TODO: фото автомобиля' },
-    { src: 'images/gallery/g3.svg', alt: 'TODO: фото вариатора' },
-    { src: 'images/gallery/g4.svg', alt: 'TODO: процесс ремонта' },
-    { src: 'images/gallery/g5.svg', alt: 'TODO: рабочая зона' },
-    { src: 'images/gallery/g6.svg', alt: 'TODO: детали агрегата' },
+    { src: 'images/gallery/g1.svg', alt: 'Рабочая зона сервиса' },
+    { src: 'images/gallery/g2.svg', alt: 'Автомобиль в сервисе' },
+    { src: 'images/gallery/g3.svg', alt: 'Вариатор' },
+    { src: 'images/gallery/g4.svg', alt: 'Процесс ремонта' },
+    { src: 'images/gallery/g5.svg', alt: 'Рабочее место' },
+    { src: 'images/gallery/g6.svg', alt: 'Детали агрегата' },
   ],
 
   articles: [
@@ -215,7 +217,7 @@ window.BUSINESS = {
     },
     {
       q: 'Сколько длится диагностика?',
-      a: 'TODO: указать фактическое время у заказчика. Обычно зависит от симптомов и загрузки сервиса.',
+      a: 'Время зависит от симптомов и загрузки сервиса. Уточните при записи.',
     },
     {
       q: 'Сколько стоит ремонт?',
@@ -223,11 +225,11 @@ window.BUSINESS = {
     },
     {
       q: 'Есть ли гарантия?',
-      a: 'TODO: указать реальные условия гарантии после согласования с заказчиком.',
+      a: 'Условия гарантии сообщаем при согласовании работ.',
     },
     {
       q: 'Можно ли приехать без записи?',
-      a: 'TODO: уточнить политику приёма. Рекомендуем записаться заранее.',
+      a: 'Рекомендуем записаться заранее, чтобы согласовать время диагностики.',
     },
     {
       q: 'Как записаться на диагностику?',
@@ -235,13 +237,13 @@ window.BUSINESS = {
     },
     {
       q: 'Делаете ли вы только вариаторы?',
-      a: 'Специализация сайта — ремонт вариаторов (CVT) и смежный ремонт АКПП. Уточняйте перечень услуг при записи.',
+      a: 'Работаем с вариаторами (CVT), АКПП и DSG. Также производим замену жидкостей. Уточняйте перечень услуг при записи.',
     },
   ],
 
   warranty: {
     enabled: false,
     title: 'Гарантия на выполненные работы',
-    text: 'TODO: добавить реальные условия гарантии заказчика.',
+    text: 'Условия гарантии сообщаем при согласовании работ.',
   },
 };

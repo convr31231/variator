@@ -8,7 +8,7 @@
   <link rel="canonical" href="https://example.ru/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Ремонт вариаторов во Владивостоке">
-  <meta property="og:description" content="Диагностика, ремонт вариаторов (CVT) и АКПП. После диагностики — предварительная оценка, точная стоимость после дефектовки.">
+  <meta property="og:description" content="Диагностика, ремонт вариаторов (CVT), АКПП и DSG. После диагностики — предварительная оценка, точная стоимость после дефектовки.">
   <meta property="og:image" content="https://example.ru/images/hero/hero-transmission.png">
   <meta property="og:locale" content="ru_RU">
   <meta name="theme-color" content="#090a0c">
@@ -38,25 +38,34 @@
 </head>
 <body data-base="">
   <header class="site-header" data-header>
-    <div class="wrap header-row">
-      <a class="brand" href="index.html" aria-label="На главную">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span><strong data-text="shortName">Пример</strong><small>Владивосток</small></span>
-      </a>
-      <nav class="nav-desk" aria-label="Основная навигация">
-        <a href="services.html">Услуги</a>
-        <a href="#zapchasti">Запчасти</a>
-        <a href="about.html">О компании</a>
-        <a href="prices.html">Цены</a>
-        <a href="cases.html">Кейсы</a>
-        <a href="#otzyvy">Отзывы</a>
-        <a href="#faq">FAQ</a>
-        <a href="contacts.html">Контакты</a>
-      </nav>
-      <div class="header-side">
-        <a class="header-phone" data-href="phone" href="tel:+70000000000"><span data-text="phone">Телефон</span></a>
-        <button class="btn btn--primary header-cta" type="button" data-open-modal="book">Записаться</button>
-        <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" data-burger>☰</button>
+    <div class="wrap">
+      <div class="header-row">
+        <a class="brand" href="index.html" aria-label="На главную">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span><strong data-text="shortName">Пример</strong><small>Владивосток</small></span>
+        </a>
+        <nav class="nav-desk" aria-label="Основная навигация">
+          <a href="services.html">Услуги</a>
+          <a href="#zapchasti">Запчасти</a>
+          <a href="about.html">О компании</a>
+          <a href="prices.html">Цены</a>
+          <a href="cases.html">Кейсы</a>
+          <a href="#otzyvy">Отзывы</a>
+          <a href="#faq">FAQ</a>
+          <a href="contacts.html">Контакты</a>
+        </nav>
+        <div class="header-side">
+          <a class="header-phone" data-href="phone" href="tel:+70000000000"><span data-text="phone">Телефон</span></a>
+          <button class="btn btn--primary header-cta" type="button" data-open-modal="book">Записаться</button>
+          <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" data-burger>☰</button>
+        </div>
+      </div>
+      <div class="header-contacts">
+        <p class="header-address"><span class="header-contacts__label">Адрес</span><span data-text="address"></span></p>
+        <div class="header-messengers" data-header-messengers hidden>
+          <span class="header-contacts__label">Написать в мессенджер:</span>
+          <div class="messenger-icons" data-messenger-icons></div>
+        </div>
       </div>
     </div>
     <div class="drawer" data-drawer>
@@ -71,6 +80,8 @@
         <a href="contacts.html">Контакты</a>
       </nav>
       <div class="drawer-actions">
+        <p class="drawer-address" data-text="address"></p>
+        <div class="messenger-icons" data-messenger-icons-mobile></div>
         <a class="btn btn--ghost" data-href="phone" href="tel:+70000000000"><span data-text="phone">Позвонить</span></a>
         <button class="btn btn--primary" type="button" data-open-modal="book">Записаться</button>
       </div>
@@ -83,7 +94,7 @@
       <div class="wrap hero-content">
         <p class="kicker">Автосервис · Владивосток</p>
         <h1>Ремонт вариаторов во Владивостоке</h1>
-        <p class="hero-sub">Диагностика, ремонт вариаторов (CVT) и АКПП. После диагностики возможна предварительная оценка. Точную стоимость определяем после дефектовки и согласуем перед ремонтом.</p>
+        <p class="hero-sub">Диагностика, ремонт вариаторов (CVT), АКПП и DSG. После диагностики возможна предварительная оценка. Точную стоимость определяем после дефектовки и согласуем перед ремонтом.</p>
         <div class="hero-cta">
           <button class="btn btn--primary" type="button" data-open-modal="book">Записаться на диагностику</button>
           <a class="btn btn--ghost" data-href="phone" href="tel:+70000000000">Позвонить</a>
@@ -112,7 +123,7 @@
           <div>
             <p class="kicker">Услуги</p>
             <h2 class="title">Что ремонтируем</h2>
-            <p class="lead">Главный фокус — ремонт вариаторов (CVT). Также работаем с АКПП и заменой масла.</p>
+            <p class="lead">Главный фокус — ремонт вариаторов (CVT), АКПП, DSG (роботов). Производим замену жидкостей.</p>
           </div>
           <a class="btn btn--ghost" href="services.html">Все услуги</a>
         </div>
@@ -124,8 +135,8 @@
       <div class="wrap">
         <div class="head reveal">
           <p class="kicker">Запчасти</p>
-          <h2 class="title">Запчасти для ремонта вариаторов</h2>
-          <p class="lead">Используем проверенные комплектующие. Подбираем детали по марке автомобиля, модели вариатора и задаче ремонта.</p>
+          <h2 class="title title--parts">Запчасти для ремонта вариаторов (CVT), АКПП и DSG</h2>
+          <p class="lead">Используем проверенные комплектующие. Подбираем детали по марке автомобиля, модели коробки и задаче ремонта.</p>
         </div>
 
         <div class="parts-filter reveal" data-parts-filter aria-label="Фильтр по марке">
@@ -138,9 +149,9 @@
         <div class="parts-vin reveal">
           <div>
             <h3>Не нашли нужную деталь?</h3>
-            <p data-text="partsVinNote">Отправьте VIN автомобиля или модель вариатора — мы проверим совместимость и стоимость.</p>
+            <p data-text="partsVinNote">Отправьте номер кузова, VIN автомобиля — мы проверим совместимость и стоимость.</p>
           </div>
-          <button class="btn btn--primary" type="button" data-open-modal="book" data-part-title="Подбор запчасти по VIN" data-part-message="Нужна проверка совместимости запчасти. VIN / модель вариатора: ">Отправить VIN</button>
+          <button class="btn btn--primary" type="button" data-open-modal="book" data-part-title="Проверка совместимости запчасти" data-part-message="Нужна проверка совместимости и стоимости запчасти." data-focus-vin="1">Отправить номер кузова</button>
         </div>
       </div>
     </section>
@@ -206,7 +217,7 @@
           <div>
             <p class="kicker">Марки</p>
             <h2 class="title">С какими автомобилями работаем</h2>
-            <p class="lead">Работаем с популярными марками с вариаторами. Если вашей марки нет в списке — уточните возможность ремонта.</p>
+            <p class="lead">Работаем с популярными марками. Если вашей марки нет в списке — уточните возможность ремонта.</p>
           </div>
           <a class="btn btn--ghost" href="variatory/index.html">Каталог вариаторов</a>
         </div>
@@ -269,7 +280,7 @@
         <div class="head reveal">
           <p class="kicker">Фото</p>
           <h2 class="title">Галерея</h2>
-          <p class="lead">Сейчас — временные заглушки. Замените файлы в images/gallery на фото сервиса.</p>
+          <p class="lead">Сейчас — временные изображения. Замените файлы в images/gallery на фото сервиса.</p>
         </div>
         <div class="gallery" data-gallery></div>
       </div>
@@ -322,14 +333,13 @@
             <div class="contact-actions">
               <a class="btn btn--primary" data-href="phone" href="tel:+70000000000">Позвонить</a>
               <button class="btn btn--soft" type="button" data-open-modal="book">Записаться</button>
-              <a class="btn btn--soft" data-messenger="whatsapp" href="#" hidden>WhatsApp</a>
-              <a class="btn btn--soft" data-messenger="telegram" href="#" hidden>Telegram</a>
+              <div class="messenger-icons" data-messenger-icons-contacts></div>
               <a class="btn btn--ghost" data-map="route" href="#">Построить маршрут</a>
             </div>
           </div>
           <div class="map-box reveal">
             <div>
-              <p>Карта появится после добавления ссылки 2GIS / Яндекс Карт в <code>js/data.js</code>.</p>
+              <p>Карта появится после добавления ссылки 2GIS / Яндекс Карт в настройках сайта.</p>
               <p style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center">
                 <a class="btn btn--ghost" data-map="twogis" href="#">2GIS</a>
                 <a class="btn btn--ghost" data-map="yandex" href="#">Яндекс Карты</a>
@@ -410,6 +420,7 @@
           <label class="field"><span>Телефон</span><input name="phone" type="tel" required autocomplete="tel" placeholder="+7 (___) ___-__-__"></label>
           <label class="field"><span>Марка автомобиля</span><input name="car"></label>
           <label class="field"><span>Модель</span><input name="model"></label>
+          <label class="field"><span>Номер кузова или VIN</span><input name="vin" autocomplete="off" placeholder="Укажите номер кузова или VIN автомобиля" data-modal-vin></label>
           <label class="field"><span>Описание проблемы</span><textarea name="message" rows="3" data-modal-message></textarea></label>
           <label class="consent"><input type="checkbox" name="consent" required><span>Согласен с <a href="consent.html" target="_blank" rel="noopener">обработкой персональных данных</a></span></label>
           <p class="form-error" data-error hidden></p>

@@ -19,35 +19,48 @@
 </head>
 <body data-base="">
 <header class="site-header" data-header>
-  <div class="wrap header-row">
-    <a class="brand" href="index.html"><span class="brand-mark"></span><span><strong data-text="shortName">Пример</strong><small>Владивосток</small></span></a>
-    <nav class="nav-desk" aria-label="Навигация">
-      <a href="services.html">Услуги</a>
-      <a href="about.html">О компании</a>
-      <a href="prices.html">Цены</a>
-      <a href="cases.html">Кейсы</a>
-      <a href="contacts.html">Контакты</a>
-    </nav>
-    <div class="header-side">
-      <a class="header-phone" data-href="phone" href="tel:+70000000000"><span data-text="phone"></span></a>
-      <button class="btn btn--primary header-cta" type="button" data-open-modal="book">Записаться</button>
-      <button class="burger" type="button" aria-label="Меню" aria-expanded="false" data-burger>☰</button>
+  <div class="wrap">
+    <div class="header-row">
+      <a class="brand" href="index.html"><span class="brand-mark"></span><span><strong data-text="shortName">Пример</strong><small>Владивосток</small></span></a>
+      <nav class="nav-desk" aria-label="Навигация">
+        <a href="services.html">Услуги</a>
+        <a href="index.html#zapchasti">Запчасти</a>
+        <a href="about.html">О компании</a>
+        <a href="prices.html">Цены</a>
+        <a href="cases.html">Кейсы</a>
+        <a href="contacts.html">Контакты</a>
+      </nav>
+      <div class="header-side">
+        <a class="header-phone" data-href="phone" href="tel:+70000000000"><span data-text="phone"></span></a>
+        <button class="btn btn--primary header-cta" type="button" data-open-modal="book">Записаться</button>
+        <button class="burger" type="button" aria-label="Меню" aria-expanded="false" data-burger>☰</button>
+      </div>
+    </div>
+    <div class="header-contacts">
+      <p class="header-address"><span class="header-contacts__label">Адрес</span><span data-text="address"></span></p>
+      <div class="header-messengers" data-header-messengers hidden>
+        <span class="header-contacts__label">Написать в мессенджер:</span>
+        <div class="messenger-icons" data-messenger-icons></div>
+      </div>
     </div>
   </div>
   <div class="drawer" data-drawer>
     <nav>
       <a href="services.html">Услуги</a>
+      <a href="index.html#zapchasti">Запчасти</a>
       <a href="about.html">О компании</a>
       <a href="prices.html">Цены</a>
       <a href="cases.html">Кейсы</a>
       <a href="contacts.html">Контакты</a>
     </nav>
     <div class="drawer-actions">
+      <p class="drawer-address" data-text="address"></p>
+      <div class="messenger-icons" data-messenger-icons-mobile></div>
       <button class="btn btn--primary" type="button" data-open-modal="book">Записаться</button>
     </div>
   </div>
 </header>
-<main class="pad-b"><section class="page-top"><div class="wrap"><nav class="crumbs"><a href="index.html">Главная</a><span>/</span><span>Контакты</span></nav><h1>Контакты</h1><p>Свяжитесь с сервисом или оставьте заявку.</p></div></section><section class="section" style="padding-top:0"><div class="wrap"><div class="contacts-grid"><div class="contact-card"><ul class="contact-list"><li><span>Адрес</span><strong data-text="address"></strong></li><li><span>Телефон</span><strong><a data-href="phone" href="tel:+70000000000"><span data-text="phone"></span></a></strong></li><li><span>График</span><strong data-text="weekdays"></strong><br><strong data-text="weekend"></strong></li></ul><div class="contact-actions"><a class="btn btn--primary" data-href="phone" href="tel:+70000000000">Позвонить</a><button class="btn btn--soft" type="button" data-open-modal="book">Записаться</button><a class="btn btn--ghost" data-map="route" href="#">Построить маршрут</a></div></div><div class="map-box"><p>TODO: карта 2GIS / Яндекс</p><p style="margin-top:1rem"><a class="btn btn--ghost" data-map="twogis" href="#">2GIS</a> <a class="btn btn--ghost" data-map="yandex" href="#">Яндекс</a></p></div></div></div></section></main>
+<main class="pad-b"><section class="page-top"><div class="wrap"><nav class="crumbs"><a href="index.html">Главная</a><span>/</span><span>Контакты</span></nav><h1>Контакты</h1><p>Свяжитесь с сервисом или оставьте заявку.</p></div></section><section class="section" style="padding-top:0"><div class="wrap"><div class="contacts-grid"><div class="contact-card"><ul class="contact-list"><li><span>Адрес</span><strong data-text="address"></strong></li><li><span>Телефон</span><strong><a data-href="phone" href="tel:+70000000000"><span data-text="phone"></span></a></strong></li><li><span>График</span><strong data-text="weekdays"></strong><br><strong data-text="weekend"></strong></li></ul><div class="contact-actions"><a class="btn btn--primary" data-href="phone" href="tel:+70000000000">Позвонить</a><button class="btn btn--soft" type="button" data-open-modal="book">Записаться</button><a class="btn btn--ghost" data-map="route" href="#">Построить маршрут</a></div></div><div class="map-box"><p>Карта появится после добавления ссылки 2GIS / Яндекс Карт.</p><p style="margin-top:1rem"><a class="btn btn--ghost" data-map="twogis" href="#">2GIS</a> <a class="btn btn--ghost" data-map="yandex" href="#">Яндекс</a></p></div></div></div></section></main>
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <div><a class="brand" href="index.html"><span class="brand-mark"></span><span><strong data-text="shortName"></strong></span></a><p style="color:var(--muted);margin-top:.8rem" data-text="tagline"></p></div>
@@ -67,7 +80,8 @@
         <label class="field"><span>Телефон</span><input name="phone" type="tel" required placeholder="+7 (___) ___-__-__"></label>
         <label class="field"><span>Марка автомобиля</span><input name="car"></label>
         <label class="field"><span>Модель</span><input name="model"></label>
-        <label class="field"><span>Описание проблемы</span><textarea name="message" rows="3"></textarea></label>
+        <label class="field"><span>Номер кузова или VIN</span><input name="vin" autocomplete="off" placeholder="Укажите номер кузова или VIN автомобиля" data-modal-vin></label>
+        <label class="field"><span>Описание проблемы</span><textarea name="message" rows="3" data-modal-message></textarea></label>
         <label class="consent"><input type="checkbox" name="consent" required><span>Согласен с <a href="consent.html" target="_blank" rel="noopener">обработкой персональных данных</a></span></label>
         <p class="form-error" data-error hidden></p>
         <button class="btn btn--primary btn--block" type="submit">Записаться на диагностику</button>

@@ -13,6 +13,20 @@
     input.value = out;
   }
 
+  function normalizeId(value) {
+    return String(value || '')
+      .trim()
+      .toUpperCase()
+      .replace(/\s+/g, '');
+  }
+
+  function isValidBodyOrVin(value) {
+    if (!value) return true;
+    const id = normalizeId(value);
+    if (id.length < 5 || id.length > 32) return false;
+    return /^[A-Z0-9-]+$/.test(id);
+  }
+
   async function submitForm(payload) {
     console.info('submitForm', payload);
     await new Promise((r) => setTimeout(r, 550));
@@ -36,6 +50,8 @@
       const phoneVal = String(fd.get('phone') || '').trim();
       const car = String(fd.get('car') || '').trim();
       const model = String(fd.get('model') || '').trim();
+      const vinRaw = String(fd.get('vin') || '').trim();
+      const vin = normalizeId(vinRaw);
       const message = String(fd.get('message') || '').trim();
       const consent = form.querySelector('[name="consent"]')?.checked;
 
@@ -50,6 +66,13 @@
         if (err) {
           err.hidden = false;
           err.textContent = 'Проверьте номер телефона';
+        }
+        return;
+      }
+      if (vinRaw && !isValidBodyOrVin(vinRaw)) {
+        if (err) {
+          err.hidden = false;
+          err.textContent = 'Проверьте номер кузова или VIN';
         }
         return;
       }
@@ -69,6 +92,8 @@
           phone: phoneVal,
           car,
           model,
+          vin: vin || '',
+          bodyNumberOrVin: vin || '',
           message,
           source: form.dataset.source || 'сайт',
           page: location.pathname,
