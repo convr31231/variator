@@ -44,7 +44,8 @@
   .consult { grid-template-columns: 1.05fr 1fr; }
   .flow { grid-template-columns: repeat(2, 1fr); }
   .articles { grid-template-columns: repeat(3, 1fr); }
-  .contacts-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+  .contacts-grid { grid-template-columns: 1fr 1fr; align-items: stretch; }
+  .map-embed { height: 380px; }
   .finale {
     grid-template-columns: 1.4fr 1fr;
     align-items: center;

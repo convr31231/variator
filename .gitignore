@@ -1,4 +1,58 @@
+# Dependencies
 node_modules/
-dist/
-.DS_Store
+server/node_modules/
+
+# Secrets and local credentials
+.env
+.env.*
+!.env.example
+server/.env
+server/.env.*
+!server/.env.example
+deploy/.env
+deploy/.env.*
+!deploy/.env.example
+server/.admin-local-password.txt
+**/.admin-local-password.txt
+**/_session-meta.json
+**/_cookie-value.txt
+
+# Persistent runtime data (SQLite, uploads, backups, sessions)
+data/*
+!data/.gitkeep
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+
+# Logs and OS junk
 *.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Build / temp
+dist/
+.tmp/
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Local test artifacts / screenshots
+**/screenshots/
+**/*screenshot*
+server/form-login-check.mjs
+server/test-scenario.mjs
+server/diag-*.mjs
+server/_verify-*.mjs
+server/playwright-report/
+test-results/
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+*~

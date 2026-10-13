@@ -1,0 +1,68 @@
+# FTC site + backend behind Caddy (HTTPS).
+# Backend is NOT published to the host — only Caddy is reachable.
+#
+# Запуск: docker compose --env-file deploy/.env up -d --build
+
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    environment:
+      HOST: "0.0.0.0"
+      PORT: "8780"
+      DATA_DIR: "/data"
+      NODE_ENV: "production"
+      COOKIE_SECURE: "${COOKIE_SECURE:-true}"
+      SESSION_SECRET: "${SESSION_SECRET:?Set SESSION_SECRET in deploy/.env}"
+      ALLOWED_ORIGINS: "${ALLOWED_ORIGINS:?Set ALLOWED_ORIGINS in deploy/.env}"
+      UPLOAD_MAX_BYTES: "${UPLOAD_MAX_BYTES:-8388608}"
+    volumes:
+      # Permanent disk for SQLite (site.db), uploads, backups
+      - site_data:/data
+    expose:
+      - "8780"
+    networks:
+      - edge
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:8780/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 25s
+
+  caddy:
+    image: caddy:2.8-alpine
+    restart: unless-stopped
+    depends_on:
+      app:
+        condition: service_healthy
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      SITE_ADDRESS: "${SITE_ADDRESS:?Set SITE_ADDRESS in deploy/.env}"
+      ACME_EMAIL: "${ACME_EMAIL:-}"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - edge
+
+networks:
+  edge:
+    driver: bridge
+
+volumes:
+  site_data:
+    name: ftc_site_data
+  caddy_data:
+    name: ftc_caddy_data
+  caddy_config:
+    name: ftc_caddy_config

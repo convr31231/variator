@@ -28,11 +28,13 @@ ${footer(base)}
 ${mobileBar(base)}
 ${modal(base)}
 <script src="${base}js/data.js"></script>
+<script src="${base}js/content-loader.js"></script>
 <script src="${base}js/menu.js"></script>
 <script src="${base}js/modal.js"></script>
 <script src="${base}js/faq.js"></script>
 <script src="${base}js/gallery.js"></script>
 <script src="${base}js/form.js"></script>
+<script src="${base}js/map-2gis.js"></script>
 <script src="${base}js/main.js"></script>
 </body>
 </html>`;
@@ -42,17 +44,17 @@ function chrome(base) {
   return `<header class="site-header" data-header>
   <div class="wrap">
     <div class="header-row">
-      <a class="brand" href="${base}index.html"><span class="brand-mark"></span><span><strong data-text="shortName">Пример</strong><small>Владивосток</small></span></a>
+      <a class="brand" href="${base}index.html"><span class="brand-mark"></span><span><strong data-text="shortName">FTC</strong><small>Владивосток</small></span></a>
       <nav class="nav-desk" aria-label="Навигация">
         <a href="${base}services.html">Услуги</a>
         <a href="${base}index.html#zapchasti">Запчасти</a>
         <a href="${base}about.html">О компании</a>
         <a href="${base}prices.html">Цены</a>
-        <a href="${base}cases.html">Кейсы</a>
+        <a href="${base}cases.html">Примеры</a>
         <a href="${base}contacts.html">Контакты</a>
       </nav>
       <div class="header-side">
-        <a class="header-phone" data-href="phone" href="tel:+70000000000"><span data-text="phone"></span></a>
+        <a class="header-phone" data-href="phone" href="tel:+79146643290"><span data-text="phone"></span></a>
         <button class="btn btn--primary header-cta" type="button" data-open-modal="book">Записаться</button>
         <button class="burger" type="button" aria-label="Меню" aria-expanded="false" data-burger>☰</button>
       </div>
@@ -71,7 +73,7 @@ function chrome(base) {
       <a href="${base}index.html#zapchasti">Запчасти</a>
       <a href="${base}about.html">О компании</a>
       <a href="${base}prices.html">Цены</a>
-      <a href="${base}cases.html">Кейсы</a>
+      <a href="${base}cases.html">Примеры</a>
       <a href="${base}contacts.html">Контакты</a>
     </nav>
     <div class="drawer-actions">
@@ -89,14 +91,14 @@ function footer(base) {
     <div><a class="brand" href="${base}index.html"><span class="brand-mark"></span><span><strong data-text="shortName"></strong></span></a><p style="color:var(--muted);margin-top:.8rem" data-text="tagline"></p></div>
     <div><h2>Услуги</h2><ul class="footer-list"><li><a href="${base}services/diagnostika.html">Диагностика</a></li><li><a href="${base}services/remont-variatora.html">Ремонт вариатора</a></li></ul></div>
     <div><h2>Разделы</h2><ul class="footer-list"><li><a href="${base}contacts.html">Контакты</a></li><li><a href="${base}privacy.html">Политика</a></li><li><a href="${base}consent.html">Согласие</a></li></ul></div>
-    <div><h2>Контакты</h2><ul class="footer-list"><li><a data-href="phone" href="tel:+70000000000"><span data-text="phone"></span></a></li><li data-text="address"></li></ul></div>
+    <div><h2>Контакты</h2><ul class="footer-list"><li><a data-href="phone" href="tel:+79146643290"><span data-text="phone"></span></a></li><li data-text="address"></li></ul></div>
   </div>
   <div class="wrap footer-bottom"><p>Ремонт вариаторов во Владивостоке</p></div>
 </footer>`;
 }
 
 function mobileBar() {
-  return `<div class="mobile-bar"><a class="btn btn--ghost" data-href="phone" href="tel:+70000000000">Позвонить</a><button class="btn btn--primary" type="button" data-open-modal="book">Записаться</button></div>`;
+  return `<div class="mobile-bar"><a class="btn btn--ghost" data-href="phone" href="tel:+79146643290">Позвонить</a><button class="btn btn--primary" type="button" data-open-modal="book">Записаться</button></div>`;
 }
 
 function modal(base) {
@@ -341,9 +343,9 @@ const simple = [
   ],
   [
     'cases.html',
-    'Кейсы ремонта вариаторов во Владивостоке',
+    'Примеры ремонта вариаторов во Владивостоке',
     'Реальные работы по ремонту CVT во Владивостоке: проблема, диагностика, результат.',
-    'Кейсы',
+    'Примеры',
     'Публикуем только подтверждённые ремонты.',
     `<div data-cases></div>`,
   ],
@@ -357,11 +359,11 @@ const simple = [
   ],
   [
     'contacts.html',
-    'Контакты — ремонт вариаторов во Владивостоке',
-    'Адрес, телефон и запись на диагностику вариатора во Владивостоке.',
+    'Контакты FTC — Владивосток, Западная 11',
+    'FTC: Владивосток, Западная улица, 11, 1-й этаж. Тел. +7 (914) 664-32-90. Ремонт вариаторов, АКПП и продажа автозапчастей.',
     'Контакты',
     'Свяжитесь с сервисом или оставьте заявку.',
-    `<div class="contacts-grid"><div class="contact-card"><ul class="contact-list"><li><span>Адрес</span><strong data-text="address"></strong></li><li><span>Телефон</span><strong><a data-href="phone" href="tel:+70000000000"><span data-text="phone"></span></a></strong></li><li><span>График</span><strong data-text="weekdays"></strong><br><strong data-text="weekend"></strong></li></ul><div class="contact-actions"><a class="btn btn--primary" data-href="phone" href="tel:+70000000000">Позвонить</a><button class="btn btn--soft" type="button" data-open-modal="book">Записаться</button><a class="btn btn--ghost" data-map="route" href="#">Построить маршрут</a></div></div><div class="map-box"><p>Карта появится после добавления ссылки 2GIS / Яндекс Карт.</p><p style="margin-top:1rem"><a class="btn btn--ghost" data-map="twogis" href="#">2GIS</a> <a class="btn btn--ghost" data-map="yandex" href="#">Яндекс</a></p></div></div>`,
+    `<div class="contacts-grid"><div class="contact-card"><ul class="contact-list"><li><span>Адрес</span><strong data-text="address"></strong></li><li><span>Телефон</span><strong><a data-href="phone" href="tel:+79146643290"><span data-text="phone"></span></a></strong></li><li><span>График</span><strong data-text="weekdays"></strong><br><strong data-text="weekend"></strong></li></ul><div class="contact-actions"><a class="btn btn--primary" data-href="phone" href="tel:+79146643290">Позвонить</a><button class="btn btn--soft" type="button" data-open-modal="book">Записаться</button><a class="btn btn--ghost" data-map="route" href="https://2gis.ru/vladivostok/firm/70000001028631070" target="_blank" rel="noopener noreferrer">Построить маршрут</a></div></div><div class="map-box"><div class="map-embed" data-2gis-map data-org="70000001028631070" data-city="vladivostok" data-lat="43.122425" data-lon="131.877191" data-zoom="16" data-title="FTC на карте 2ГИС — Владивосток, Западная улица, 11"><p class="map-embed__placeholder">Загрузка карты 2ГИС…</p></div><p class="map-box__fallback" data-map-fallback hidden>Карта временно недоступна. Откройте карточку компании по кнопке ниже.</p><div class="map-box__actions"><a class="btn btn--ghost" data-map="twogis" href="https://2gis.ru/vladivostok/firm/70000001028631070" target="_blank" rel="noopener noreferrer">Открыть в 2ГИС</a></div></div></div>`,
   ],
 ];
 

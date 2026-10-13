@@ -2,35 +2,47 @@
  * Данные бизнеса. Заполните контакты и мессенджеры перед публикацией.
  */
 window.BUSINESS = {
-  name: 'Пример',
-  shortName: 'Пример',
-  tagline: 'Ремонт вариаторов во Владивостоке',
+  name: 'FTC',
+  shortName: 'FTC',
+  tagline: 'Ремонт вариаторов, АКПП и продажа автозапчастей',
   city: 'Владивосток',
-  phone: '+7 (___) ___-__-__',
-  phoneHref: 'tel:+70000000000',
-  email: 'info@example.ru',
-  address: '[Адрес сервиса], Владивосток',
+  phone: '+7 (914) 664-32-90',
+  phoneHref: 'tel:+79146643290',
+  email: 'taburetka1278@yandex.ru',
+  address: 'Владивосток, Западная улица, 11, 1-й этаж',
   schedule: {
-    weekdays: 'Пн–Пт: [время]',
-    weekend: 'Сб–Вс: [время]',
-    short: '[График работы]',
+    weekdays: 'Пн–Пт: 09:00–17:00',
+    weekend: 'Сб: 09:00–13:00 · Вс: выходной',
+    short: 'Пн–Пт 09:00–17:00, Сб 09:00–13:00, Вс выходной',
   },
   geo: null,
   maps: {
     yandex: '',
-    twogis: '',
-    route: '',
+    twogis: 'https://2gis.ru/vladivostok/firm/70000001028631070',
+    route: 'https://2gis.ru/vladivostok/firm/70000001028631070',
+    // Официальный виджет firmsonmap (widgets.2gis.com / DGWidgetLoader).
+    // lat/lon — point организации из карточки 2ГИС, не параметр m ссылки просмотра.
+    widget: {
+      orgId: '70000001028631070',
+      city: 'vladivostok',
+      lat: 43.122425,
+      lon: 131.877191,
+      zoom: 16,
+    },
   },
   messengers: {
-    whatsapp: '',
-    telegram: '',
+    whatsapp: 'https://wa.me/79146643290',
+    telegram: 'https://t.me/+79146643290',
     max: '',
   },
   baseUrl: 'https://example.ru',
   legal: {
-    entity: '[ООО / ИП]',
-    inn: 'ИНН: [номер]',
+    entity: '',
+    inn: '',
   },
+  heroTitle: 'Ремонт вариаторов во Владивостоке',
+  heroSub:
+    'Диагностика, ремонт вариаторов (CVT), АКПП и DSG. После диагностики возможна предварительная оценка. Точную стоимость определяем после дефектовки и согласуем перед ремонтом.',
 
   trustPoints: [
     { title: 'Специализация на CVT', text: 'Фокус на диагностике и ремонте вариаторов, а не «ремонт всего подряд».' },

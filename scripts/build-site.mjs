@@ -214,7 +214,7 @@ const homeBody = `
         <div>
           <p class="section__eyebrow">Наши работы</p>
           <h2 class="section__title">Реальные ремонты</h2>
-          <p class="section__lead">Кейсы публикуем только с реальными данными клиента.</p>
+          <p class="section__lead">Примеры публикуем только с реальными данными клиента.</p>
         </div>
         <a href="raboty.html" class="btn btn--ghost">Все работы</a>
       </div>
@@ -314,13 +314,13 @@ function write(file, content) {
 write(
   'index.html',
   shell('index.html', {
-    title: 'Ремонт вариаторов во Владивостоке — Пример',
+    title: 'FTC — ремонт вариаторов, АКПП и DSG во Владивостоке',
     description:
       'Диагностика и ремонт вариаторов во Владивостоке: выясняем причину, согласуем стоимость, ремонтируем и проверяем автомобиль. Запись на диагностику.',
     canonical: 'https://example.ru/',
     active: 'home',
     body: homeBody,
-    jsonLd: `<script type="application/ld+json">{"@context":"https://schema.org","@type":"AutoRepair","name":"Пример","description":"Ремонт вариаторов во Владивостоке","address":{"@type":"PostalAddress","addressLocality":"Владивосток","addressCountry":"RU"},"areaServed":"Владивосток","url":"https://example.ru/"}</script>`,
+    jsonLd: `<script type="application/ld+json">{"@context":"https://schema.org","@type":"AutoRepair","name":"FTC","description":"Ремонт вариаторов, АКПП и продажа автозапчастей во Владивостоке","address":{"@type":"PostalAddress","addressLocality":"Владивосток","addressCountry":"RU","streetAddress":"Западная улица, 11, 1-й этаж"},"telephone":"+7-914-664-32-90","email":"taburetka1278@yandex.ru","areaServed":"Владивосток","url":"https://example.ru/","sameAs":["https://2gis.ru/vladivostok/firm/70000001028631070"],"openingHours":["Mo-Fr 09:00-17:00","Sa 09:00-13:00"]}</script>`,
   }),
 );
 
@@ -456,7 +456,7 @@ for (const v of BUSINESS.variators) {
 
 const simplePages = [
   ['ceny.html', 'Цены на ремонт вариатора во Владивостоке', 'Ориентиры стоимости диагностики и ремонта вариатора во Владивостоке.', 'Цены', 'ceny', 'prices', '<div data-prices></div>'],
-  ['raboty.html', 'Наши работы по ремонту вариаторов во Владивостоке', 'Реальные кейсы ремонта CVT во Владивостоке.', 'Наши работы', 'raboty', 'cases', '<div data-cases></div>'],
+  ['raboty.html', 'Наши работы по ремонту вариаторов во Владивостоке', 'Реальные примеры ремонта CVT во Владивостоке.', 'Наши работы', 'raboty', 'cases', '<div data-cases></div>'],
   ['otzyvy.html', 'Отзывы о ремонте вариаторов во Владивостоке', 'Отзывы клиентов о диагностике и ремонте вариаторов во Владивостоке.', 'Отзывы', 'otzyvy', 'reviews', '<div data-reviews></div>'],
   ['faq.html', 'Вопросы о ремонте вариатора во Владивостоке', 'FAQ: сколько стоит ремонт вариатора, сколько длится диагностика, можно ли ездить с рывками.', 'FAQ', 'faq', 'faq', '<div class="faq__list" data-faq></div>'],
   ['kontakty.html', 'Контакты сервиса ремонта вариаторов во Владивостоке', 'Адрес, телефон, режим работы и запись на диагностику вариатора во Владивостоке.', 'Контакты', 'kontakty', 'contacts', '<div data-contacts data-contacts-page></div>'],

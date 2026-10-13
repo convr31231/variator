@@ -1,0 +1,27 @@
+{
+  "name": "variator-site-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Backend и админ-панель для сайта ремонта вариаторов",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "create-admin": "node create-admin.mjs",
+    "backup": "node backup.mjs",
+    "restore": "node restore.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.1",
+    "file-type": "^16.5.4",
+    "multer": "^1.4.5-lts.2",
+    "sharp": "^0.33.5"
+  }
+}

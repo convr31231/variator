@@ -1,0 +1,22 @@
+{
+  # Automatic HTTPS (Let's Encrypt) when SITE_ADDRESS is a real domain
+  email {$ACME_EMAIL}
+}
+
+{$SITE_ADDRESS} {
+  encode gzip zstd
+
+  # Forward client IP / proto for Express trust proxy + secure cookies
+  reverse_proxy app:8780 {
+    header_up X-Forwarded-Proto {scheme}
+    header_up X-Forwarded-For {remote_host}
+    header_up X-Real-IP {remote_host}
+  }
+
+  header {
+    Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    X-Content-Type-Options nosniff
+    Referrer-Policy strict-origin-when-cross-origin
+    -Server
+  }
+}
