@@ -36,6 +36,9 @@ export function createApp() {
     express.static(path.join(config.siteRoot, 'admin'), {
       index: 'index.html',
       extensions: ['html'],
+      setHeaders(res, filePath) {
+        if (/\.(html|js|css)$/i.test(filePath)) res.setHeader('Cache-Control', 'no-cache');
+      },
     }),
   );
 

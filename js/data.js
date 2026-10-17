@@ -17,7 +17,7 @@ window.BUSINESS = {
   },
   geo: null,
   maps: {
-    yandex: '',
+    yandex: 'https://yandex.ru/maps/org/ftc/163373220809/',
     twogis: 'https://2gis.ru/vladivostok/firm/70000001028631070',
     route: 'https://2gis.ru/vladivostok/firm/70000001028631070',
     // Официальный виджет firmsonmap (widgets.2gis.com / DGWidgetLoader).
@@ -131,12 +131,12 @@ window.BUSINESS = {
     { slug: 'honda', name: 'Honda', href: 'variatory/honda.html' },
     { slug: 'subaru', name: 'Subaru', href: 'variatory/subaru.html' },
     { slug: 'mitsubishi', name: 'Mitsubishi', href: 'variatory/mitsubishi.html' },
-    { slug: 'suzuki', name: 'Suzuki', href: '' },
-    { slug: 'lexus', name: 'Lexus', href: '' },
-    { slug: 'infiniti', name: 'Infiniti', href: '' },
-    { slug: 'mazda', name: 'Mazda', href: '' },
-    { slug: 'daihatsu', name: 'Daihatsu', href: '' },
-    { slug: 'renault', name: 'Renault', href: '' },
+    { slug: 'suzuki', name: 'Suzuki', href: 'variatory/suzuki.html' },
+    { slug: 'lexus', name: 'Lexus', href: 'variatory/lexus.html' },
+    { slug: 'infiniti', name: 'Infiniti', href: 'variatory/infiniti.html' },
+    { slug: 'mazda', name: 'Mazda', href: 'variatory/mazda.html' },
+    { slug: 'daihatsu', name: 'Daihatsu', href: 'variatory/daihatsu.html' },
+    { slug: 'renault', name: 'Renault', href: 'variatory/renault.html' },
   ],
 
   partsFilters: ['Nissan', 'Mitsubishi', 'Toyota', 'Subaru', 'Renault'],

@@ -65,14 +65,18 @@
         svg: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.94 4.24 19.1 19.35c-.2 1-.76 1.24-1.54.77l-4.27-3.15-2.06 1.98c-.23.23-.42.42-.86.42l.31-4.35 7.91-7.14c.34-.31-.08-.48-.53-.17l-9.77 6.15-4.21-1.32c-.92-.28-.93-.9.2-1.34L20.55 3.3c.77-.28 1.44.17 1.39.94z"/></svg>',
       },
       max: {
-        label: 'MAX',
-        svg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><path d="M7.5 15.5V8.5L12 13l4.5-4.5v7"/></svg>',
+        label: 'Написать в MAX',
+        // Знак из официального брендбука https://go.max.ru/brandbook (монохром, как соседние иконки).
+        svg: '<svg viewBox="0 0 100 100" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M50.76 0c27.53 0 49.12 22.34 49.12 49.89S77.61 99.23 51.02 99.23c-9.43 0-14.01-1.33-21.37-6.54-.5-.36-1.2-.26-1.63.19-5.66 6.04-20.17 10.28-20.83 2.03C7.19 80.53 0 71.18 0 49.61 0 21.3 23.22 0 50.76 0m.77 24.55c-13.07-.68-23.26 8.39-25.51 22.58-1.86 11.75 1.44 26.07 4.26 26.8 1.2.3 4.08-1.9 6.18-3.88.4-.37.99-.44 1.45-.15 3.27 2 6.97 3.5 11.05 3.71 13.42.7 25.3-9.8 26-23.21.71-13.42-10.01-25.14-23.43-25.85"/></svg>',
       },
     };
 
     function renderMessengerIcons(container) {
       if (!container) return false;
-      const items = Object.entries(B.messengers || {}).filter(([, url]) => !!url);
+      const messengers = B.messengers || {};
+      const items = ['whatsapp', 'telegram', 'max']
+        .filter((key) => !!messengers[key])
+        .map((key) => [key, messengers[key]]);
       if (!items.length) {
         container.innerHTML = '';
         return false;

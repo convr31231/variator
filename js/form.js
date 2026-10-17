@@ -90,11 +90,12 @@
         const res = await submitForm({
           name,
           phone: phoneVal,
-          car,
+          car: car || form.dataset.brand || '',
           model,
           vin: vin || '',
           bodyNumberOrVin: vin || '',
           message,
+          brand: form.dataset.brand || car || '',
           source: form.dataset.source || 'сайт',
           page: location.pathname,
         });

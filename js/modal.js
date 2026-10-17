@@ -48,6 +48,17 @@
     }
   }
 
+  function applyBrandContext(btn, modal) {
+    const brand = btn?.getAttribute('data-brand') || document.body.dataset.brand || '';
+    if (!brand || !modal) return;
+    const form = modal.querySelector('[data-form]');
+    const car = modal.querySelector('input[name="car"]');
+    if (car && !String(car.value || '').trim()) car.value = brand;
+    if (!form) return;
+    form.dataset.brand = brand;
+    if (!btn?.getAttribute('data-part-title')) form.dataset.source = 'страница марки';
+  }
+
   document.addEventListener('click', (e) => {
     const openBtn = e.target.closest('[data-open-modal]');
     if (openBtn) {
@@ -55,6 +66,7 @@
       const id = openBtn.getAttribute('data-open-modal');
       const modal = document.getElementById(id);
       applyPartContext(openBtn, modal);
+      applyBrandContext(openBtn, modal);
       openModal(id);
     }
     if (e.target.closest('[data-close-modal]')) closeModal(e.target.closest('.overlay'));

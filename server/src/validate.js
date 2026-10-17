@@ -11,6 +11,21 @@ function arr(v, field) {
   return v;
 }
 
+function httpsUrl(value, max, field) {
+  const s = str(value, max, field);
+  if (!s) return '';
+  let parsed;
+  try {
+    parsed = new URL(s);
+  } catch {
+    throw new Error(`${field}: нужна корректная HTTPS-ссылка`);
+  }
+  if (parsed.protocol !== 'https:' || !parsed.hostname) {
+    throw new Error(`${field}: разрешены только HTTPS-ссылки`);
+  }
+  return s;
+}
+
 function normalizeListWithPrice(list, field, mapItem) {
   return arr(list, field).map((item, index) => {
     const base = mapItem(item, index);
@@ -38,7 +53,7 @@ export function validateContent(input) {
       short: str(schedule.short, 160, 'График кратко'),
     },
     maps: {
-      yandex: str(input.maps?.yandex, 500, 'Яндекс Карты'),
+      yandex: httpsUrl(input.maps?.yandex, 500, 'Ссылка на Яндекс Карты'),
       twogis: str(input.maps?.twogis, 500, '2GIS'),
       route: str(input.maps?.route, 500, 'Маршрут'),
       widget: {
@@ -52,7 +67,7 @@ export function validateContent(input) {
     messengers: {
       whatsapp: str(input.messengers?.whatsapp, 500, 'WhatsApp'),
       telegram: str(input.messengers?.telegram, 500, 'Telegram'),
-      max: str(input.messengers?.max, 500, 'MAX'),
+      max: httpsUrl(input.messengers?.max, 500, 'Ссылка на MAX'),
     },
     baseUrl: str(input.baseUrl, 200, 'Базовый URL'),
     legal: {

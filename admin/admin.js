@@ -12,17 +12,48 @@ function uid(prefix) {
   return `${prefix}-${Math.random().toString(36).slice(2, 9)}`;
 }
 
+const MAX_UPLOAD_BYTES = 8 * 1024 * 1024;
+
+function withRequestId(message, requestId) {
+  return requestId ? `${message} Код: ${requestId}` : message;
+}
+
+function networkErrorMessage(requestId) {
+  return withRequestId('Соединение прервалось, сервер не ответил. Отправьте фото ещё раз.', requestId);
+}
+
+function describeHttpError(status, data, requestId) {
+  const id = data?.requestId || requestId;
+  if (status === 401) return withRequestId(data?.error || 'Сессия истекла. Войдите в админ-панель снова.', id);
+  if (status === 403) return withRequestId(data?.error || 'Запрос отклонён: недопустимый Origin', id);
+  if (status === 413) return withRequestId(data?.error || 'Файл слишком большой (макс. 8 МБ)', id);
+  if (status === 502 || status === 503 || status === 504 || status === 524 || status === 530) {
+    return withRequestId(`Туннель вернул ошибку ${status} и не доставил ответ сервера.`, id);
+  }
+  return withRequestId(data?.error || `Ошибка сервера ${status}`, id);
+}
+
 async function api(path, options = {}) {
-  const { headers: optHeaders, ...rest } = options;
+  const { headers: optHeaders, requestId, ...rest } = options;
   const headers = { ...(optHeaders || {}) };
+  if (requestId) headers['X-Request-Id'] = requestId;
   if (rest.body && !(rest.body instanceof FormData) && !headers['Content-Type']) {
     headers['Content-Type'] = 'application/json';
   }
-  const res = await fetch(`/api${path}`, {
-    credentials: 'same-origin',
-    ...rest,
-    headers,
-  });
+  let res;
+  try {
+    res = await fetch(`/api${path}`, {
+      credentials: 'same-origin',
+      ...rest,
+      headers,
+    });
+  } catch (e) {
+    const raw = String(e?.message || '');
+    if (e instanceof TypeError || /NetworkError|Failed to fetch|Load failed|network/i.test(raw)) {
+      throw new Error(networkErrorMessage(requestId));
+    }
+    throw e;
+  }
   let data = null;
   try {
     data = await res.json();
@@ -30,7 +61,7 @@ async function api(path, options = {}) {
     data = null;
   }
   if (!res.ok) {
-    throw new Error(data?.error || `Ошибка ${res.status}`);
+    throw new Error(describeHttpError(res.status, data, requestId));
   }
   return data;
 }
@@ -88,11 +119,68 @@ function move(arr, index, dir) {
   });
 }
 
+function uploadFormatError(file) {
+  if (!file) return 'Файл не выбран';
+  const name = String(file.name || '').toLowerCase();
+  if (name.endsWith('.svg') || name.endsWith('.svgz')) {
+    return 'SVG запрещён. Загрузите JPEG, PNG или WebP.';
+  }
+  const allowedType = ['image/jpeg', 'image/png', 'image/webp'].includes(file.type);
+  const allowedExt = /\.(jpe?g|png|webp)$/.test(name);
+  if (file.type && !allowedType && !allowedExt) {
+    return 'Этот формат не поддерживается. Загрузите JPEG, PNG или WebP.';
+  }
+  if (!file.type && name && !allowedExt) {
+    return 'Этот формат не поддерживается. Загрузите JPEG, PNG или WebP.';
+  }
+  return '';
+}
+
+function sizeError() {
+  return 'Файл слишком большой (макс. 8 МБ). Уменьшите снимок и попробуйте снова.';
+}
+
+async function shrinkForUpload(file) {
+  if (typeof createImageBitmap !== 'function') return file;
+  let bitmap;
+  try {
+    bitmap = await createImageBitmap(file);
+    const maxEdge = 2000;
+    const scale = Math.min(1, maxEdge / Math.max(bitmap.width, bitmap.height));
+    const width = Math.max(1, Math.round(bitmap.width * scale));
+    const height = Math.max(1, Math.round(bitmap.height * scale));
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext('2d', { alpha: false });
+    if (!ctx) return file;
+    ctx.drawImage(bitmap, 0, 0, width, height);
+    const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/jpeg', 0.82));
+    if (!blob || blob.size >= file.size) return file;
+    const base = String(file.name || 'photo').replace(/\.[^.]+$/, '') || 'photo';
+    return new File([blob], `${base}.jpg`, { type: 'image/jpeg', lastModified: Date.now() });
+  } catch {
+    return file;
+  } finally {
+    bitmap?.close?.();
+  }
+}
+
 async function uploadPhoto(file, previewEl) {
+  const formatProblem = uploadFormatError(file);
+  if (formatProblem) throw new Error(formatProblem);
+  const prepared = await shrinkForUpload(file);
+  if (prepared.size > MAX_UPLOAD_BYTES) throw new Error(sizeError());
   const fd = new FormData();
-  fd.append('photo', file);
+  fd.append('photo', prepared);
+  const requestId = crypto.randomUUID();
   setStatus('Загрузка фото…');
-  const data = await api('/upload', { method: 'POST', body: fd });
+  const data = await api('/upload', {
+    method: 'POST',
+    body: fd,
+    requestId,
+    headers: { 'X-Original-Bytes': String(file.size || 0) },
+  });
   if (previewEl) previewEl.src = data.file.src;
   setStatus('Фото загружено', 'ok');
   return data.file;
@@ -123,6 +211,11 @@ function bindPriceType(root, item) {
 
 function render() {
   const c = state.content;
+  c.messengers = {
+    whatsapp: c.messengers?.whatsapp || '',
+    telegram: c.messengers?.telegram || '',
+    max: c.messengers?.max || '',
+  };
   const panels = $('#panels');
   panels.innerHTML = `
     <section class="panel ${state.section === 'texts' ? 'is-active' : ''}" data-panel="texts">
@@ -162,9 +255,14 @@ function render() {
         <h2>Способы связи и карты</h2>
         <label>WhatsApp (ссылка)<input data-path="messengers.whatsapp" value="${escapeAttr(c.messengers.whatsapp)}"></label>
         <label>Telegram (ссылка)<input data-path="messengers.telegram" value="${escapeAttr(c.messengers.telegram)}"></label>
-        <label>MAX (ссылка)<input data-path="messengers.max" value="${escapeAttr(c.messengers.max)}"></label>
+        <label>Ссылка на MAX<input data-path="messengers.max" type="url" inputmode="url" placeholder="https://" value="${escapeAttr(c.messengers.max)}"></label>
+        <p class="hint">На сайте кнопка MAX появится только после сохранения рабочей HTTPS-ссылки. Адрес профиля сюда нужно вставить вручную.</p>
+        <div class="max-preview">
+          <span class="max-preview__icon" aria-hidden="true"><svg viewBox="0 0 100 100" fill="currentColor"><path fill-rule="evenodd" d="M50.76 0c27.53 0 49.12 22.34 49.12 49.89S77.61 99.23 51.02 99.23c-9.43 0-14.01-1.33-21.37-6.54-.5-.36-1.2-.26-1.63.19-5.66 6.04-20.17 10.28-20.83 2.03C7.19 80.53 0 71.18 0 49.61 0 21.3 23.22 0 50.76 0m.77 24.55c-13.07-.68-23.26 8.39-25.51 22.58-1.86 11.75 1.44 26.07 4.26 26.8 1.2.3 4.08-1.9 6.18-3.88.4-.37.99-.44 1.45-.15 3.27 2 6.97 3.5 11.05 3.71 13.42.7 25.3-9.8 26-23.21.71-13.42-10.01-25.14-23.43-25.85"/></svg></span>
+          <span>Предпросмотр иконки. Подпись кнопки на сайте: «Написать в MAX».</span>
+        </div>
         <label>2GIS<input data-path="maps.twogis" value="${escapeAttr(c.maps.twogis)}"></label>
-        <label>Яндекс Карты<input data-path="maps.yandex" value="${escapeAttr(c.maps.yandex)}"></label>
+        <label>Ссылка на Яндекс Карты<input data-path="maps.yandex" type="url" inputmode="url" placeholder="https://yandex.ru/maps/..." value="${escapeAttr(c.maps.yandex)}"></label>
         <label>Маршрут<input data-path="maps.route" value="${escapeAttr(c.maps.route)}"></label>
       </div>
     </section>
@@ -471,15 +569,17 @@ function renderParts() {
     file?.addEventListener('change', async () => {
       const f = file.files?.[0];
       if (!f) return;
+      file.disabled = true;
       try {
         preview.hidden = false;
         const uploaded = await uploadPhoto(f, preview);
         item.image = uploaded.src;
         markDirty();
       } catch (e) {
+        if (!item.image) preview.hidden = true;
         setStatus(e.message, 'error');
-        alert(e.message);
       } finally {
+        file.disabled = false;
         file.value = '';
       }
     });
@@ -523,15 +623,17 @@ function renderCases() {
     file?.addEventListener('change', async () => {
       const f = file.files?.[0];
       if (!f) return;
+      file.disabled = true;
       try {
         preview.hidden = false;
         const uploaded = await uploadPhoto(f, preview);
         item.image = uploaded.src;
         markDirty();
       } catch (e) {
+        if (!item.image) preview.hidden = true;
         setStatus(e.message, 'error');
-        alert(e.message);
       } finally {
+        file.disabled = false;
         file.value = '';
       }
     });
@@ -565,15 +667,17 @@ function renderGallery() {
     file?.addEventListener('change', async () => {
       const f = file.files?.[0];
       if (!f) return;
+      file.disabled = true;
       try {
         preview.hidden = false;
         const uploaded = await uploadPhoto(f, preview);
         item.src = uploaded.src;
         markDirty();
       } catch (e) {
+        if (!item.src) preview.hidden = true;
         setStatus(e.message, 'error');
-        alert(e.message);
       } finally {
+        file.disabled = false;
         file.value = '';
       }
     });
@@ -604,9 +708,9 @@ async function save() {
     setStatus('Сохранено. Обновите страницу сайта, чтобы увидеть изменения.', 'ok');
   } catch (e) {
     setStatus(e.message, 'error');
-    alert(e.message);
   } finally {
-    $('#save-btn').disabled = false;
+    const saveBtn = $('#save-btn');
+    if (saveBtn) saveBtn.disabled = false;
   }
 }
 

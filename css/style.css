@@ -240,6 +240,14 @@ code { color: var(--accent); }
   color: var(--accent);
 }
 
+.messenger-icon:focus,
+.messenger-icon:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 .messenger-icon svg {
   width: 18px;
   height: 18px;
@@ -576,6 +584,32 @@ code { color: var(--accent); }
 }
 
 .brand-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.brand-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.35rem;
+}
+
+.brand-nav a,
+.brand-nav span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: var(--bg-3);
+  color: var(--text);
+  font-size: 0.88rem;
+}
+
+.brand-nav a:hover,
+.brand-nav [aria-current="page"] {
   border-color: var(--accent);
   color: var(--accent);
 }
@@ -990,6 +1024,16 @@ span.brand-pill:hover {
   flex-wrap: wrap;
   gap: 0.65rem;
   justify-content: flex-start;
+  min-width: 0;
+  max-width: 100%;
+}
+.map-box__actions .btn {
+  flex: 1 1 12.5rem;
+  max-width: 100%;
+  min-width: 0;
+  white-space: normal;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
 }
 .map-box__fallback {
   margin: 0;

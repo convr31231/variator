@@ -21,11 +21,26 @@ ensureEnv();
 initDb();
 
 const app = createApp();
-app.listen(config.port, config.host, () => {
+const server = app.listen(config.port, config.host, () => {
   console.log(`Сайт:     http://127.0.0.1:${config.port}/`);
   console.log(`Админка:  http://127.0.0.1:${config.port}/admin/`);
   console.log(`Данные:   ${config.dataDir}`);
   if (!hasAdmin()) {
     console.log('Администратор не создан. Выполните: cd server && npm run create-admin');
   }
+});
+server.requestTimeout = 0;
+server.headersTimeout = 120000;
+server.keepAliveTimeout = 75000;
+
+process.on('uncaughtException', (error) => {
+  try {
+    fs.appendFileSync(
+      path.join(config.dataDir, 'upload-diag.log'),
+      `${JSON.stringify({ at: new Date().toISOString(), stage: 'uncaught', error: error?.code || 'uncaught' })}\n`,
+    );
+  } catch {
+    /* ignore */
+  }
+  process.exit(1);
 });

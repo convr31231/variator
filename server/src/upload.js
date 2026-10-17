@@ -39,9 +39,16 @@ export async function processUpload(file) {
 
   let image;
   try {
-    image = sharp(file.buffer, { failOn: 'error' }).rotate();
-  } catch {
-    throw Object.assign(new Error('Не удалось прочитать изображение'), { status: 400 });
+    image = sharp(file.buffer, {
+      failOn: 'error',
+      limitInputPixels: config.maxImageDimension * config.maxImageDimension,
+    }).rotate();
+  } catch (e) {
+    const tooBig = /pixel limit|too large/i.test(String(e?.message || ''));
+    throw Object.assign(
+      new Error(tooBig ? 'Изображение слишком большое (макс. 2000×2000)' : 'Не удалось прочитать изображение'),
+      { status: 400 },
+    );
   }
 
   const meta = await image.metadata();
