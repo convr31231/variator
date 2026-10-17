@@ -27,15 +27,15 @@ ${chrome(base, brand)}
 ${footer(base)}
 ${mobileBar(brand)}
 ${modal(base)}
-<script src="${base}js/data.js?v=20261017-brands2"></script>
-<script src="${base}js/content-loader.js?v=20261017-brands2"></script>
+<script src="${base}js/data.js?v=20261017-pages"></script>
+<script src="${base}js/content-loader.js?v=20261017-pages"></script>
 <script src="${base}js/menu.js"></script>
-<script src="${base}js/modal.js?v=20261017-brands2"></script>
+<script src="${base}js/modal.js?v=20261017-pages"></script>
 <script src="${base}js/faq.js"></script>
 <script src="${base}js/gallery.js"></script>
-<script src="${base}js/form.js?v=20261017-brands2"></script>
+<script src="${base}js/form.js?v=20261017-pages"></script>
 <script src="${base}js/map-2gis.js"></script>
-<script src="${base}js/main.js"></script>
+<script src="${base}js/main.js?v=20261017-pages"></script>
 </body>
 </html>`;
 }
@@ -526,7 +526,7 @@ const simple = [
     'FTC: Владивосток, Западная улица, 11, 1-й этаж. Тел. +7 (914) 664-32-90. Ремонт вариаторов, АКПП и продажа автозапчастей.',
     'Контакты',
     'Свяжитесь с сервисом или оставьте заявку.',
-    `<div class="contacts-grid"><div class="contact-card"><ul class="contact-list"><li><span>Адрес</span><strong data-text="address"></strong></li><li><span>Телефон</span><strong><a data-href="phone" href="tel:+79146643290"><span data-text="phone"></span></a></strong></li><li><span>График</span><strong data-text="weekdays"></strong><br><strong data-text="weekend"></strong></li></ul><div class="contact-actions"><a class="btn btn--primary" data-href="phone" href="tel:+79146643290">Позвонить</a><button class="btn btn--soft" type="button" data-open-modal="book">Записаться</button><a class="btn btn--ghost" data-map="route" href="https://2gis.ru/vladivostok/firm/70000001028631070" target="_blank" rel="noopener noreferrer">Построить маршрут</a></div></div><div class="map-box"><div class="map-embed" data-2gis-map data-org="70000001028631070" data-city="vladivostok" data-lat="43.122425" data-lon="131.877191" data-zoom="16" data-title="FTC на карте 2ГИС — Владивосток, Западная улица, 11"><p class="map-embed__placeholder">Загрузка карты 2ГИС…</p></div><p class="map-box__fallback" data-map-fallback hidden>Карта временно недоступна. Откройте карточку компании по кнопке ниже.</p><div class="map-box__actions"><a class="btn btn--ghost" data-map="twogis" href="https://2gis.ru/vladivostok/firm/70000001028631070" target="_blank" rel="noopener noreferrer">Открыть в 2ГИС</a></div></div></div>`,
+    `<div class="contacts-grid"><div class="contact-card"><ul class="contact-list"><li><span>Адрес</span><strong data-text="address"></strong></li><li><span>Телефон</span><strong><a data-href="phone" href="tel:+79146643290"><span data-text="phone"></span></a></strong></li><li><span>График</span><strong data-text="weekdays"></strong><br><strong data-text="weekend"></strong></li></ul><div class="contact-actions"><a class="btn btn--primary" data-href="phone" href="tel:+79146643290">Позвонить</a><button class="btn btn--soft" type="button" data-open-modal="book">Записаться</button><a class="btn btn--ghost" data-map="route" href="https://2gis.ru/vladivostok/firm/70000001028631070" target="_blank" rel="noopener noreferrer">Построить маршрут</a></div></div><div class="map-box"><div class="map-embed" data-2gis-map data-org="70000001028631070" data-city="vladivostok" data-lat="43.122425" data-lon="131.877191" data-zoom="16" data-title="FTC на карте 2ГИС — Владивосток, Западная улица, 11"><p class="map-embed__placeholder">Загрузка карты 2ГИС…</p></div><p class="map-box__fallback" data-map-fallback hidden>Карта временно недоступна. Откройте карточку компании по кнопке ниже.</p><div class="map-box__actions"><a class="btn btn--ghost" data-map="twogis" href="https://2gis.ru/vladivostok/firm/70000001028631070" target="_blank" rel="noopener noreferrer">Открыть в 2ГИС</a><a class="btn btn--ghost" data-map="yandex" href="https://yandex.ru/maps/org/ftc/163373220809/" target="_blank" rel="noopener noreferrer">Открыть в Яндекс Картах</a></div></div></div>`,
   ],
 ];
 

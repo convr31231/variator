@@ -27,10 +27,73 @@
     return /^[A-Z0-9-]+$/.test(id);
   }
 
+  async function appointmentApiAvailable() {
+    try {
+      const res = await fetch('/api/health', {
+        cache: 'no-store',
+        headers: { Accept: 'application/json' },
+      });
+      if (!res.ok) return false;
+      const data = await res.json();
+      return data?.ok === true;
+    } catch {
+      return false;
+    }
+  }
+
+  const apiReady = appointmentApiAvailable();
+
+  function messengerLinks(B) {
+    const items = [
+      ['whatsapp', 'WhatsApp', B.messengers?.whatsapp],
+      ['telegram', 'Telegram', B.messengers?.telegram],
+      ['max', 'Написать в MAX', B.messengers?.max],
+    ].filter(([, , url]) => url);
+    return items
+      .map(
+        ([, label, url]) =>
+          `<a class="btn btn--ghost" href="${url.replace(/"/g, '&quot;')}" target="_blank" rel="noopener noreferrer">${label}</a>`,
+      )
+      .join('');
+  }
+
+  async function showStaticContact(form) {
+    if (window.__contentReady) await window.__contentReady;
+    const B = window.BUSINESS || {};
+    const fields = form.querySelector('[data-fields]');
+    const ok = form.querySelector('[data-success]');
+    if (fields) fields.hidden = true;
+    if (ok) ok.hidden = true;
+    let box = form.querySelector('[data-static-contact]');
+    if (!box) {
+      box = document.createElement('div');
+      box.setAttribute('data-static-contact', '');
+      box.className = 'stack';
+      form.appendChild(box);
+    }
+    const phone = B.phoneHref || 'tel:+79146643290';
+    const phoneText = B.phone || '+7 (914) 664-32-90';
+    box.innerHTML = `<p>Заявка с этой страницы не отправляется: здесь нет приёма форм. Позвоните или напишите в мессенджер.</p>
+      <div class="finale-actions"><a class="btn btn--primary" href="${phone.replace(/"/g, '&quot;')}">Позвонить ${phoneText}</a>${messengerLinks(B)}</div>`;
+  }
+
   async function submitForm(payload) {
-    console.info('submitForm', payload);
-    await new Promise((r) => setTimeout(r, 550));
-    return { ok: true };
+    const res = await fetch('/api/appointments', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    let data = null;
+    try {
+      data = await res.json();
+    } catch {
+      data = null;
+    }
+    if (!res.ok || !data?.ok) {
+      throw new Error(data?.error || 'Не удалось отправить. Позвоните нам.');
+    }
+    return data;
   }
 
   function bind(form) {
@@ -44,6 +107,10 @@
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      if (!(await apiReady)) {
+        await showStaticContact(form);
+        return;
+      }
       if (err) err.hidden = true;
       const fd = new FormData(form);
       const name = String(fd.get('name') || '').trim();
@@ -103,10 +170,10 @@
         if (fields) fields.hidden = true;
         if (ok) ok.hidden = false;
         form.reset();
-      } catch {
+      } catch (error) {
         if (err) {
           err.hidden = false;
-          err.textContent = 'Не удалось отправить. Позвоните нам.';
+          err.textContent = error?.message || 'Не удалось отправить. Позвоните нам.';
         }
       } finally {
         btn?.classList.remove('is-loading');
@@ -123,4 +190,8 @@
 
   document.querySelectorAll('[data-form]').forEach(bind);
   window.submitForm = submitForm;
+  apiReady.then((ok) => {
+    if (ok) return;
+    document.querySelectorAll('[data-form]').forEach((form) => showStaticContact(form));
+  });
 })();
